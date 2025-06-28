@@ -5,40 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2563EB',
+            secondary: '#10B981',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
 </head>
+
 <body class="bg-white text-gray-800">
 
-  <!-- Шапка -->
-  <header class="bg-white shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-      <div class="flex items-center space-x-3">
-        <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-10 h-10">
-        <div class="text-2xl font-bold text-blue-600">ЖК Аквамарин</div>
-      </div>
-      <nav>
-        <ul class="flex space-x-6">
-          <li><a href="#" class="hover:text-blue-600">Главная</a></li>
-          <li><a href="#news" class="hover:text-blue-600">Новости</a></li>
-          <li><a href="#documents" class="hover:text-blue-600">Документы</a></li>
-          <li><a href="#contacts" class="hover:text-blue-600">Контакты</a></li>
-          <li><a href="#payment" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Оплата</a></li>
-        </ul>
-      </nav>
+<!-- Шапка -->
+<header class="bg-white shadow sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+    <div class="flex items-center space-x-3">
+      <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-10 h-10">
+      <div class="text-2xl font-bold text-blue-600">ЖК Аквамарин</div>
     </div>
-  </header>
+    <nav class="flex items-center space-x-6">
+      <ul class="flex space-x-6">
+        <li><a href="#" class="hover:text-blue-600">Главная</a></li>
+        <li><a href="#news" class="hover:text-blue-600">Новости</a></li>
+        <li><a href="#documents" class="hover:text-blue-600">Документы</a></li>
+        <li><a href="#contacts" class="hover:text-blue-600">Контакты</a></li>
+      </ul>
+      <div class="flex space-x-3">
+        <a href="#payment" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Оплата</a>
+        <a href="https://lk.tsn-26.ru" target="_blank" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Личный кабинет</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <!-- Герой -->
-  <section class="relative">
-    <img src="1.1.webp" alt="ЖК Аквамарин" class="w-full h-[500px] object-cover">
-    <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">ЖК Аквамарин</h1>
-      <p class="text-lg mb-8">Комфорт, порядок и забота о вашем доме</p>
-      <div class="flex space-x-4">
-        <a href="#payment" class="bg-blue-600 px-6 py-3 rounded-xl hover:bg-blue-700 shadow">Оплатить онлайн</a>
-        <a href="#news" class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-blue-600">Новости</a>
-      </div>
+<!-- Герой -->
+<section class="relative">
+  <img src="1.1.webp" alt="ЖК Аквамарин" class="w-full h-[500px] object-cover">
+  <div class="absolute inset-0 bg-white/20 backdrop-blur-md flex flex-col justify-center items-center text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 text-blue-800">ЖК Аквамарин</h1>
+    <p class="text-lg mb-8 text-blue-900">Комфорт, порядок и забота о вашем доме</p>
+    <div class="flex space-x-4">
+      <a href="#payment" class="bg-blue-600 px-6 py-3 rounded-xl hover:bg-blue-700 shadow text-white">Оплатить онлайн</a>
+      <a href="#news" class="border border-blue-600 px-6 py-3 rounded-xl hover:bg-blue-100 text-blue-600">Новости</a>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Информационный блок -->
+  <section class="py-16 bg-blue-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex justify-center">
+      <a href="info.html"
+         class="group block bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition">
+
+        <div class="flex flex-col items-center">
+          <!-- Иконка -->
+          <div class="bg-blue-100 text-blue-600 rounded-full p-4 mb-4 shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                 viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                 class="w-12 h-12">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 17h.01M12 7v4m0 0v4m0-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/>
+            </svg>
+          </div>
+
+          <!-- Заголовок -->
+          <h3 class="text-2xl font-semibold text-blue-800 group-hover:text-blue-600 mb-2">
+            Информация
+          </h3>
+
+          <!-- Описание -->
+          <p class="text-center text-gray-600">
+            Правила проживания, документы, протоколы, памятки — всё, что важно знать жителям ЖК.
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
   <!-- О нас -->
   <section id="about" class="py-16">
@@ -114,8 +168,8 @@
       <h2 class="text-3xl font-bold mb-6 text-center">Контакты</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <p><strong>Телефон:</strong> +7 (000) 000-00-00</p>
-          <p><strong>Email:</strong> info@aquamaringk.ru</p>
+          <p><strong>Телефон:</strong> +7 (995) 000-12-23</p>
+          <p><strong>Email:</strong> tsn.akvamarin@bk.ru</p>
           <p><strong>Адрес:</strong> г.Москва, Озерковская, 26</p>
           <div class="mt-4">
             <iframe src="https://yandex.ru/map-widget/v1/-/" width="100%" height="250" frameborder="0"></iframe>
