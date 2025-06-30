@@ -5,286 +5,315 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            primary: '#1E3A8A', // Глубокий темно-синий
-            accent: '#FBBF24', // Золотой акцент
-            background: '#F9F7F0', // Кремовый фон
+            primary: '#1A2526', // Deep navy for sophistication
+            accent: '#C0A372', // Soft gold for luxury
+            secondary: '#E5E7EB', // Light gray for accents
+            background: '#F7F7F5', // Warm off-white
+            surface: '#FFFFFF', // Pure white
           },
           fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
-            sans: ['"Montserrat"', 'sans-serif'],
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
           },
-        }
-      }
-    }
+          boxShadow: {
+            'luxury': '0 15px 30px rgba(0, 0, 0, 0.1)',
+            'luxury-hover': '0 20px 40px rgba(0, 0, 0, 0.2)',
+          },
+          spacing: {
+            '128': '32rem',
+          },
+        },
+      },
+    };
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Скрытие маркера details */
-    summary::-webkit-details-marker { display: none; }
-
-    /* Параллакс-эффект для изображения */
-    .parallax {
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    /* Анимации появления */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-in {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-
-    /* Стиль карточек */
-    .card-content {
-      height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .card-content:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Плавный скролл */
     html { scroll-behavior: smooth; }
+    .parallax-bg { background-attachment: fixed; background-size: cover; background-position: center; }
+    .fade-in { opacity: 0; transform: translateY(30px); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-scale:hover { transform: scale(1.1) translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
+    .doc-tile { transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease; }
+    .doc-tile:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); background-color: rgba(192, 163, 114, 0.1); }
+    .section-divider { border-top: 1px solid rgba(192, 163, 114, 0.2); }
+    .tile-icon { display: inline-block; }
   </style>
 </head>
 
-<body class="bg-background text-gray-800 font-sans">
+<body class="bg-background text-primary font-sans antialiased">
 
-<!-- Шапка -->
-<header class="bg-white shadow-md sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center p-6">
-    <div class="flex items-center space-x-4">
-      <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
-      <h1 class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</h1>
+  <header class="bg-surface sticky top-0 z-50 shadow-luxury">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
+      <div class="flex items-center space-x-4">
+        <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
+      </div>
+      <nav class="flex items-center space-x-8">
+        <ul class="flex space-x-8 text-sm font-semibold uppercase tracking-wide">
+          <li><a href="#" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+          <li><a href="#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+          <li><a href="#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+          <li><a href="#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+        </ul>
+        <div class="flex space-x-4">
+          <a href="#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+        </div>
+      </nav>
     </div>
-    <nav class="flex items-center space-x-8">
-      <ul class="flex space-x-6 text-lg">
-        <li><a href="#home" class="hover:text-accent transition-colors">Главная</a></li>
-        <li><a href="#news" class="hover:text-accent transition-colors">Новости</a></li>
-        <li><a href="#documents" class="hover:text-accent transition-colors">Документы</a></li>
-        <li><a href="#contacts" class="hover:text-accent transition-colors">Контакты</a></li>
+  </header>
+
+  <section class="relative h-screen overflow-hidden parallax-bg" style="background-image: url('1.1.webp');">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/70 z-10"></div>
+    <div class="relative z-20 flex flex-col justify-center items-center h-full text-center text-secondary">
+      <h1 class="text-6xl md:text-7xl font-serif font-bold mb-6 animate-fade-in-up">ЖК Аквамарин</h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-2xl animate-fade-in-up animation-delay-200">Эксклюзивная резиденция для тех, кто ценит утонченность и комфорт</p>
+      <div class="flex space-x-6">
+        <a href="#payment" class="bg-accent text-surface px-8 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 animate-fade-in-up animation-delay-400">Оплатить онлайн</a>
+        <a href="#news" class="border border-secondary px-8 py-3 rounded-full text-secondary font-semibold hover:bg-secondary hover:text-primary transition duration-300 animate-fade-in-up animation-delay-600">Новости</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 section-divider">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Ваш новый уровень жизни</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <a href="info.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+          <div class="flex flex-col items-center text-center">
+            <div class="text-3xl mb-6 text-accent tile-icon">ℹ️</div>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Информация</h3>
+            <p class="text-secondary">Все о правилах проживания и важных документах для резидентов.</p>
+          </div>
+        </a>
+        <a href="announcements.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+          <div class="flex flex-col items-center text-center">
+            <div class="text-3xl mb-6 text-accent tile-icon">📢</div>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Объявления</h3>
+            <p class="text-secondary">Актуальные события и уведомления для жителей комплекса.</p>
+          </div>
+        </a>
+        <a href="tariffs.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+          <div class="flex flex-col items-center text-center">
+            <div class="text-3xl mb-6 text-accent tile-icon">💰</div>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Тарифы</h3>
+            <p class="text-secondary">Информация о стоимости услуг и обслуживания резиденции.</p>
+          </div>
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-4xl mx-auto">
+        <a href="voting.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+          <div class="flex flex-col items-center text-center">
+            <div class="text-3xl mb-6 text-accent tile-icon">✅</div>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Голосования</h3>
+            <p class="text-secondary">Участвуйте в принятии решений по жизни комплекса.</p>
+          </div>
+        </a>
+        <a href="services.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+          <div class="flex flex-col items-center text-center">
+            <div class="text-3xl mb-6 text-accent tile-icon">🛎️</div>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Услуги</h3>
+            <p class="text-secondary">Эксклюзивные сервисы для вашего комфорта и удобства.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" class="py-24 bg-surface section-divider">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Новости резиденции</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale">
+          <h3 class="text-xl font-semibold mb-3 text-accent">💧 Отключение воды 25 июня</h3>
+          <p class="text-secondary">С 10:00 до 16:00 будет отключение холодной воды для проведения ремонтных работ.</p>
+        </div>
+        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale">
+          <h3 class="text-xl font-semibold mb-3 text-accent">🛠️ Работы по благоустройству</h3>
+          <p class="text-secondary">Обновление детской площадки и озеленение территории комплекса.</p>
+        </div>
+        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale">
+          <h3 class="text-xl font-semibold mb-3 text-accent">💡 Собрание жильцов 1 июля</h3>
+          <p class="text-secondary">Отчёт правления и обсуждение планов на следующий год.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="documents" class="py-24 section-divider">
+    <div class="max-w-4xl mx-auto pxelse-4">
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Документы</h2>
+      <ul class="space-y-6">
+        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc">📄 Устав ТСН Аквамарин</a></li>
+        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc">📄 Протоколы собраний</a></li>
+        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc">📄 Финансовые отчёты</a></li>
+        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc">📄 Правила проживания</a></li>
       </ul>
-      <div class="flex space-x-4">
-        <a href="#payment" class="bg-primary text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition-all">Оплата</a>
-        <a href="https://lk.tsn-26.ru" target="_blank" class="bg-accent text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition-all">Личный кабинет</a>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<!-- Герой с параллаксом -->
-<section class="relative h-screen parallax" style="background-image: url('1.1.webp');">
-  <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center text-white">
-    <h1 class="text-5xl md:text-6xl font-serif font-bold mb-4 fade-in delay-100">ЖК Аквамарин</h1>
-    <p class="text-xl mb-6 fade-in delay-200">Исключительный комфорт и утонченная жизнь</p>
-    <div class="flex space-x-6">
-      <a href="#payment" class="bg-accent px-6 py-3 rounded-full hover:bg-opacity-90 transition-all fade-in delay-300">Оплатить онлайн</a>
-      <a href="#news" class="border-2 border-white px-6 py-3 rounded-full hover:bg-white hover:text-primary transition-all fade-in delay-400">Новости</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Информационный блок -->
-<section class="py-20">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <a href="info.html" class="group block bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all fade-in delay-100">
-        <div class="card-content">
-          <div class="bg-primary/10 text-primary rounded-full p-5 mb-6 shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 17h.01M12 7v4m0 0v4m0-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-serif font-semibold text-primary group-hover:text-accent mb-2">Информация</h3>
-          <p class="text-gray-600">Правила, документы и важные сведения для вашего комфорта.</p>
+  <section id="payment" class="py-24 bg-background section-divider">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-4xl md:text-5xl font-serif mb-8">Оплата онлайн</h2>
+      <p class="text-secondary mb-8 max-w-2xl mx-auto">Оплачивайте услуги резиденции быстро и удобно через QR-код или банковские реквизиты.</p>
+      <div class="mb-8">
+        <img src="qr-code.png" alt="QR код для оплаты" class="mx-auto w-56 h-56 rounded-2xl shadow-luxury">
+      </div>
+      <div class="bg-surface inline-block p-8 rounded-2xl shadow-luxury">
+        <p><strong>Получатель:</strong> ТСН Аквамарин</p>
+        <p><strong>ИНН:</strong> 0000000000</p>
+        <p><strong>КПП:</strong> 000000000</p>
+        <p><strong>Р/С:</strong> 40700000000000000000</p>
+        <p><strong>Банк:</strong> АО "Банк"</p>
+        <p><strong>БИК:</strong> 000000000</p>
+        <p><strong>Кор. счет:</strong> 30100000000000000000</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts" class="py-24 section-divider">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="text-4xl md:text-5xl font-serif mb-8">Контакты</h2>
+        <p class="text-secondary mb-2"><strong>Телефон:</strong> +7 (995) 000-12-23</p>
+        <p class="text-secondary mb-2"><strong>Email:</strong> tsn.akvamarin@bk.ru</p>
+        <p class="text-secondary mb-6"><strong>Адрес:</strong> г. Москва, Озерковская, 26</p>
+        <div class="rounded-2xl overflow-hidden shadow-luxury">
+          <iframe src="https://yandex.ru/map-widget/v1/-/" width="100%" height="300" frameborder="0"></iframe>
         </div>
-      </a>
-
-      <a href="announcements.html" class="group block bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all fade-in delay-200">
-        <div class="card-content">
-          <div class="bg-primary/10 text-primary rounded-full p-5 mb-6 shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6h1.5m-1.5 3h1.5m-1.5 3h1.5M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-serif font-semibold text-primary group-hover:text-accent mb-2">Объявления</h3>
-          <p class="text-gray-600">Актуальные события и извещения для жителей.</p>
-        </div>
-      </a>
-
-      <a href="tariffs.html" class="group block bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all fade-in delay-300">
-        <div class="card-content">
-          <div class="bg-primary/10 text-primary rounded-full p-5 mb-6 shadow-md">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-serif font-semibold text-primary group-hover:text-accent mb-2">Тарифы</h3>
-          <p class="text-gray-600">Подробности о тарифах и экокампаниях комплекса.</p>
-        </div>
-      </a>
-
-      <div class="lg:col-span-3 flex justify-center">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-          <a href="voting.html" class="group block bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all fade-in delay-400">
-            <div class="card-content">
-              <div class="bg-primary/10 text-primary rounded-full p-5 mb-6 shadow-md">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-serif font-semibold text-primary group-hover:text-accent mb-2">Голосования</h3>
-              <p class="text-gray-600">Ваше мнение определяет развитие комплекса.</p>
-            </div>
-          </a>
-
-          <a href="services.html" class="group block bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all fade-in delay-500">
-            <div class="card-content">
-              <div class="bg-primary/10 text-primary rounded-full p-5 mb-6 shadow-md">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"/>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-serif font-semibold text-primary group-hover:text-accent mb-2">Услуги</h3>
-              <p class="text-gray-600">Премиальные сервисы для вашего удобства.</p>
-            </div>
-          </a>
+      </div>
+      <div>
+        <h3 class="text-2xl font-serif font-semibold mb-6">Свяжитесь с нами</h3>
+        <div class="space-y-6">
+          <input type="text" placeholder="Ваше имя" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition" required>
+          <input type="email" placeholder="Email" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition" required>
+          <textarea placeholder="Сообщение" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition" rows="5" required></textarea>
+          <button type="submit" class="bg-accent text-surface px-8 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Отправить</button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- О нас -->
-<section id="about" class="py-20 bg-white">
-  <div class="max-w-5xl mx-auto px-6 text-center">
-    <h2 class="text-4xl font-serif font-bold text-primary mb-6 fade-in delay-100">О нас</h2>
-    <p class="text-lg text-gray-700 max-w-2xl mx-auto fade-in delay-200">
-      ЖК Аквамарин — воплощение роскоши и уюта. Мы обеспечиваем безопасность, безупречный сервис и гармоничное окружение для наших жителей.
-    </p>
-  </div>
-</section>
-
-<!-- Новости -->
-<section id="news" class="py-20 bg-background">
-  <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-4xl font-serif font-bold text-primary mb-8 text-center fade-in delay-100">Новости</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all fade-in delay-200">
-        <h3 class="text-xl font-semibold text-primary mb-2">💧 Обновление инфраструктуры</h3>
-        <p class="text-gray-600">Завершены работы по модернизации водоснабжения.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all fade-in delay-300">
-        <h3 class="text-xl font-semibold text-primary mb-2">🛠️ Благоустройство</h3>
-        <p class="text-gray-600">Начало работ по озеленению и дизайну территории.</p>
-      </div>
-      <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all fade-in delay-400">
-        <h3 class="text-xl font-semibold text-primary mb-2">💡 Собрание жильцов</h3>
-        <p class="text-gray-600">Приглашаем на встречу 1 июля, повестка на сайте.</p>
-      </div>
+  <footer class="bg-primary py-12 text-secondary">
+    <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+      © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
     </div>
-    <div class="text-center mt-8">
-      <a href="#" class="text-accent hover:underline transition-colors fade-in delay-500">Все новости →</a>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<!-- Документы -->
-<section id="documents" class="py-20">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-4xl font-serif font-bold text-primary mb-8 text-center fade-in delay-100">Документы</h2>
-    <ul class="max-w-2xl mx-auto space-y-4">
-      <li><a href="#" class="block border border-gray-200 p-4 rounded-xl hover:bg-primary/5 transition-all fade-in delay-200">📄 Устав ТСН</a></li>
-      <li><a href="#" class="block border border-gray-200 p-4 rounded-xl hover:bg-primary/5 transition-all fade-in delay-300">📄 Протоколы</a></li>
-      <li><a href="#" class="block border border-gray-200 p-4 rounded-xl hover:bg-primary/5 transition-all fade-in delay-400">📄 Отчёты</a></li>
-      <li><a href="#" class="block border border-gray-200 p-4 rounded-xl hover:bg-primary/5 transition-all fade-in delay-500">📄 Правила</a></li>
-    </ul>
-  </div>
-</section>
+  <script>
+    // GSAP Animations
+    gsap.registerPlugin(ScrollTrigger);
 
-<!-- Оплата -->
-<section id="payment" class="py-20 bg-background">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-4xl font-serif font-bold text-primary mb-6 fade-in delay-100">Оплата онлайн</h2>
-    <p class="mb-4 text-gray-700 fade-in delay-200">Простая и безопасная оплата услуг через СБП или по реквизитам.</p>
-    <div class="mb-6">
-      <img src="qr-code.png" alt="QR код для оплаты" class="mx-auto w-48 h-48 rounded-lg shadow-md fade-in delay-300">
-    </div>
-    <div class="bg-white p-6 rounded-xl shadow-lg inline-block fade-in delay-400">
-      <p><strong>Получатель:</strong> ТСН Аквамарин</p>
-      <p><strong>ИНН:</strong> 0000000000</p>
-      <p><strong>КПП:</strong> 000000000</p>
-      <p><strong>Р/С:</strong> 40700000000000000000</p>
-      <p><strong>Банк:</strong> АО "Банк"</p>
-      <p><strong>БИК:</strong> 000000000</p>
-      <p><strong>Кор. счет:</strong> 30100000000000000000</p>
-    </div>
-  </div>
-</section>
+    // Tile animations for staggered fade-in and scale (feature tiles)
+    gsap.utils.toArray('.tile').forEach((tile, index) => {
+      gsap.fromTo(
+        tile,
+        { opacity: 0, y: 40, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: tile,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: index * 0.1 // Stagger effect
+        }
+      );
+    });
 
-<!-- Контакты -->
-<section id="contacts" class="py-20 bg-white">
-  <div class="max-w-5xl mx-auto px-6">
-    <h2 class="text-4xl font-serif font-bold text-primary mb-8 text-center fade-in delay-100">Контакты</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="fade-in delay-200">
-        <p class="text-lg"><strong>Телефон:</strong> +7 (995) 000-12-23</p>
-        <p class="text-lg"><strong>Email:</strong> tsn.akvamarin@bk.ru</p>
-        <p class="text-lg"><strong>Адрес:</strong> г.Москва, Озерковская, 26</p>
-        <div class="mt-6">
-          <iframe src="https://yandex.ru/map-widget/v1/-/" width="100%" height="300" frameborder="0" class="rounded-xl shadow-md"></iframe>
-        </div>
-      </div>
-      <div class="fade-in delay-300">
-        <h3 class="text-2xl font-serif font-semibold text-primary mb-6">Форма связи</h3>
-        <form class="space-y-6">
-          <input type="text" placeholder="Ваше имя" class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-accent transition-all" required>
-          <input type="email" placeholder="Email" class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-accent transition-all" required>
-          <textarea placeholder="Сообщение" class="w-full border border-gray-300 rounded-xl p-4 focus:ring-2 focus:ring-accent transition-all" rows="5" required></textarea>
-          <button type="submit" class="bg-primary text-white px-8 py-3 rounded-full hover:bg-opacity-90 transition-all">Отправить</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
+    // Icon pulse animation for feature tiles
+    gsap.utils.toArray('.tile-icon').forEach((icon) => {
+      gsap.fromTo(
+        icon,
+        { scale: 1 },
+        {
+          scale: 1.2,
+          duration: 0.5,
+          repeat: 1,
+          yoyo: true,
+          ease: 'power1.inOut',
+          scrollTrigger: {
+            trigger: icon.parentElement,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
 
-<!-- Подвал -->
-<footer class="bg-primary text-white py-12">
-  <div class="max-w-7xl mx-auto text-center text-sm">
-    © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:underline">Политика конфиденциальности</a>
-  </div>
-</footer>
+    // Document tiles animation
+    gsap.utils.toArray('.doc-tile').forEach((tile, index) => {
+      gsap.fromTo(
+        tile,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: tile,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: index * 0.15 // Stagger effect
+        }
+      );
+    });
 
-<script>
-  // Анимация появления элементов при скролле
-  function reveal() {
-    const reveals = document.querySelectorAll('.fade-in');
-    for (let i = 0; i < reveals.length; i++) {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveals[i].getBoundingClientRect().top;
-      const elementVisible = 150;
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add('active');
+    // Hero section animations
+    gsap.fromTo(
+      '.animate-fade-in-up',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        stagger: 0.2,
       }
-    }
-  }
-  window.addEventListener('scroll', reveal);
-  reveal(); // Инициализация при загрузке
-</script>
+    );
+
+    // Parallax effect for hero background
+    gsap.to('.parallax-bg', {
+      backgroundPosition: '50% 100%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.parallax-bg',
+        scrub: true,
+      },
+    });
+
+    // General fade-in for other sections
+    gsap.utils.toArray('.fade-in:not(.tile):not(.doc-tile)').forEach((element) => {
+      gsap.fromTo(
+        element,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+  </script>
 </body>
 </html>
