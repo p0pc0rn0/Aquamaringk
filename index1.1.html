@@ -156,9 +156,9 @@
     <div class="max-w-4xl mx-auto px-4">
       <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Документы</h2>
       <ul class="space-y-6">
-        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Устав ТСН Аквамарин</a></li>
-        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Протоколы собраний</a></li>
-        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Финансовые отчёты</a></li>
+        <li><a href="TireServicePrice2022_3.pdf" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Прайс-лист на услуги шиномонтажа</a></li>
+        <li><a href="TireServicePrice2025.pdf" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Прайс-лист на услуги автомойки</a></li>
+        <li><a href="tur2.pdf" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Презентация ООО "ДК ТУР"</a></li>
         <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Правила проживания</a></li>
       </ul>
     </div>
@@ -218,7 +218,8 @@
 
     // Tile animations for staggered fade-in and scale (feature tiles)
     gsap.utils.toArray('.tile').forEach((tile, index) => {
-      gsap.fromTo( tile,
+      gsap.fromTo(
+        tile,
         { opacity: 0, y: 40, scale: 0.9 },
         {
           opacity: 1,
