@@ -5,116 +5,231 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Объявления | ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A2526',
+            accent: '#C0A372',
+            secondary: '#E5E7EB',
+            body: '#4B5563',
+            background: '#F7F7F5',
+            surface: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+          },
+          boxShadow: {
+            'luxury': '0 15px 30px rgba(0, 0, 0, 0.1)',
+            'luxury-hover': '0 20px 40px rgba(0, 0, 0, 0.2)',
+          },
+          spacing: {
+            '128': '32rem',
+          },
+          lineHeight: {
+            'relaxed': '1.75',
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    html { scroll-behavior: smooth; }
     summary::-webkit-details-marker { display: none; }
+    .fade-in { opacity: 0; transform: translateY(30px); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-scale:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+    .details-group { transition: all 0.4s ease; }
+    .details-group[open] summary span:last-child { transform: rotate(45deg); }
+    .details-group summary { cursor: pointer; }
   </style>
 </head>
 
-<body class="bg-white text-gray-800">
-
-<section id="announcements" class="bg-gray-50 py-16">
-  <div class="max-w-7xl mx-auto px-4">
-
-    <!-- Кнопка "Вернуться на главную" -->
-    <div class="mb-8">
-      <a href="index.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 shadow transition">
-        ← Вернуться на главную
-      </a>
+<body class="bg-background text-primary font-sans antialiased">
+  <header class="bg-surface sticky top-0 z-50 shadow-luxury">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
+      <div class="flex items-center space-x-4">
+        <a href="index.html">
+          <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+        </a>
+        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
+      </div>
+      <nav class="flex items-center space-x-8">
+        <ul class="flex space-x-8 text-sm font-semibold uppercase tracking-wide">
+          <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+          <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+          <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+          <li><a href="index.html#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+        </ul>
+        <div class="flex space-x-4">
+          <a href="index.html#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <!-- Заголовок -->
-    <h2 class="text-4xl font-bold mb-8 text-center text-blue-700">📢 Объявления для жителей</h2>
+  <section id="announcements" class="bg-surface py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">📢 Объявления для жителей</h2>
 
-    <!-- Список объявлений -->
-    <div class="grid gap-6">
+      <div class="grid gap-6">
+        <!-- Объявление 1 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">28 марта 2024 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>🚗 В связи с ситуацией допуск автомобилей доставки и такси во двор ограничен.</p>
+            <p>При заказе такси указывайте посадку/высадку — набережная вдоль дома или заказывайте пропуск через диспетчерскую.</p>
+            <p class="text-accent font-semibold">ПРАВЛЕНИЕ ТСН «АКВАМАРИН»</p>
+          </div>
+        </details>
 
-      <!-- Объявление -->
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">28 марта 2024 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>🚗 В связи с ситуацией допуск автомобилей доставки и такси во двор ограничен.</p>
-          <p>При заказе такси указывайте посадку/высадку — набережная вдоль дома или заказывайте пропуск через диспетчерскую.</p>
-          <p class="text-blue-700 font-semibold">ПРАВЛЕНИЕ ТСН «АКВАМАРИН»</p>
-        </div>
-      </details>
+        <!-- Объявление 2 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">27 марта 2024 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>🧽 С 8 апреля начинается мойка окон. Стоимость — 250 руб./м². Заказ через диспетчерскую.</p>
+          </div>
+        </details>
 
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">27 марта 2024 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>🧽 С 8 апреля начинается мойка окон. Стоимость — 250 руб./м². Заказ через диспетчерскую.</p>
-        </div>
-      </details>
+        <!-- Объявление 3 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">27 марта 2024 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>🔧 С 4 апреля доступна сезонная смена колёс. Заказ через диспетчерскую.</p>
+          </div>
+        </details>
 
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">27 марта 2024 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>🔧 С 4 апреля доступна сезонная смена колёс. Заказ через диспетчерскую.</p>
-        </div>
-      </details>
+        <!-- Объявление 4 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1200">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">24 октября 2023 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>📄 Уведомление о проведении общего собрания собственников в форме заочного голосования через систему «Дом-26.РФ».</p>
+          </div>
+        </details>
 
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">24 октября 2023 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>📄 Уведомление о проведении общего собрания собственников в форме заочного голосования через систему «Дом-26.РФ».</p>
-        </div>
-      </details>
+        <!-- Объявление 5 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1400">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">2 апреля 2023 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>🚿 Отключение горячей воды: с 14:00 10 июля по 13:59 20 июля 2023 г.</p>
+          </div>
+        </details>
 
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">2 апреля 2023 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>🚿 Отключение горячей воды: с 14:00 10 июля по 13:59 20 июля 2023 г.</p>
-        </div>
-      </details>
+        <!-- Объявление 6 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1600">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">1 июля 2022 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>📈 С 1 июля изменились тарифы на ЖКУ. Актуальные тарифы доступны в разделе «Тарифы».</p>
+          </div>
+        </details>
 
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">1 июля 2022 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>📈 С 1 июля изменились тарифы на ЖКУ. Актуальные тарифы доступны в разделе «Тарифы».</p>
-        </div>
-      </details>
+        <!-- Объявление 7 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1800">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">14 апреля 2022 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>🧴 Стоимость мойки автомобилей скорректирована в связи с ростом цен на автохимию.</p>
+          </div>
+        </details>
 
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">14 апреля 2022 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>🧴 Стоимость мойки автомобилей скорректирована в связи с ростом цен на автохимию.</p>
-        </div>
-      </details>
-
-      <details class="group bg-white rounded-xl shadow-md p-6">
-        <summary class="flex justify-between items-center cursor-pointer">
-          <span class="text-lg font-semibold text-blue-800">8 апреля 2022 года</span>
-          <span class="text-2xl transition-transform group-open:rotate-45">➕</span>
-        </summary>
-        <div class="mt-4 text-gray-700 leading-relaxed space-y-2">
-          <p>🧽 С 25 апреля 2022 года — мойка наружных окон методом промышленного альпинизма.</p>
-          <p>Стоимость — 220 руб./м². Заказы через диспетчерскую.</p>
-        </div>
-      </details>
-
+        <!-- Объявление 8 -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-2000">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">8 апреля 2022 года</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="mt-4 text-body leading-relaxed space-y-2">
+            <p>🧽 С 25 апреля 2022 года — мойка наружных окон методом промышленного альпинизма.</p>
+            <p>Стоимость — 220 руб./м². Заказы через диспетчерскую.</p>
+          </div>
+        </details>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <footer class="bg-primary py-12 text-body text-sm">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
+    </div>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Анимация появления заголовка
+    gsap.fromTo(
+      '#announcements h2',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#announcements',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+
+    // Анимация появления карточек
+    gsap.utils.toArray('details').forEach((detail, index) => {
+      gsap.fromTo(
+        detail,
+        { opacity: 0, y: 40, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: detail,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: index * 0.1,
+        }
+      );
+    });
+
+    // Эффект наведения для карточек
+    gsap.utils.toArray('.hover-scale').forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        gsap.to(element, { scale: 1.05, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)', duration: 0.3, ease: 'power1.out' });
+      });
+      element.addEventListener('mouseleave', () => {
+        gsap.to(element, { scale: 1, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)', duration: 0.3, ease: 'power1.out' });
+      });
+    });
+  </script>
 </body>
 </html>
