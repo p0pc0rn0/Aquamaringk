@@ -1,10 +1,53 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Голосование - ТСН Озерковская 26</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Голосование - ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A2526',
+            accent: '#C0A372',
+            secondary: '#E5E7EB',
+            body: '#4B5563',
+            background: '#F7F7F5',
+            surface: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+          },
+          boxShadow: {
+            'luxury': '0 15px 30px rgba(0, 0, 0, 0.1)',
+            'luxury-hover': '0 20px 40px rgba(0, 0, 0, 0.2)',
+          },
+          spacing: {
+            '128': '32rem',
+          },
+          lineHeight: {
+            'relaxed': '1.75',
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    html { scroll-behavior: smooth; }
+    summary::-webkit-details-marker { display: none; }
+    .fade-in { opacity: 0; transform: translateY(30px); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-scale:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+    .details-group { transition: all 0.4s ease; }
+    .details-group[open] summary span:last-child { transform: rotate(45deg); }
+    .details-group summary { cursor: pointer; }
     .scroll-btn {
       position: fixed;
       bottom: 20px;
@@ -12,9 +55,9 @@
       z-index: 50;
       width: 50px;
       height: 50px;
-      background: #2563EB;
+      background: #C0A372;
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      box-shadow: 0 4px 12px rgba(192, 163, 114, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -22,7 +65,7 @@
     }
     .scroll-btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 6px 18px rgba(29, 78, 216, 0.5);
+      box-shadow: 0 6px 18px rgba(192, 163, 114, 0.5);
     }
     .scroll-btn svg {
       width: 24px;
@@ -33,255 +76,311 @@
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .home-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: #2563EB;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.3s ease;
-      z-index: 50;
-    }
-    .home-btn:hover {
-      background: #1D4ED8;
-    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
 
-<section class="bg-gray-50 py-16">
-  <div class="max-w-5xl mx-auto px-4">
-
-    <!-- Кнопка "Вернуться назад" -->
-    <div class="mb-8">
-      <a href="index.html" class="home-btn">← Вернуться назад</a>
-    </div>
-
-    <h1 class="text-4xl font-bold mb-8 text-center">Голосование 🗳️</h1>
-
-    <!-- Инфо-блок -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h2 class="text-xl font-semibold mb-2">
-        Общее собрание собственников помещений по адресу:<br>
-        115184, г. Москва, Озерковская наб., дом 26
-      </h2>
-      <p class="text-sm text-gray-600">
-        Период проведения: <strong>25 октября 2023, 10:00 — 20 ноября 2023, 10:00</strong>
-      </p>
-    </div>
-
-    <!-- Голосования -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h3 class="text-lg font-semibold mb-2">1. Избрать председателем собрания Яковлева Андрея Яковлевича</h3>
-      <div class="space-y-2">
-        <div class="flex justify-between">
-          <span>За</span>
-          <span>56 голосов (100%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
-        </div>
-
-        <div class="flex justify-between">
-          <span>Против</span>
-          <span>0 голосов</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-red-500 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
-
-        <div class="flex justify-between">
-          <span>Воздержался</span>
-          <span>0 голосов</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
+<body class="bg-background text-primary font-sans antialiased">
+  <header class="bg-surface sticky top-0 z-50 shadow-luxury">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
+      <div class="flex items-center space-x-4">
+        <a href="index.html">
+          <img src="logo.png" alt="Логотип ТСН Озерковская 26" class="w-12 h-12">
+        </a>
+        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Всего голосов: 56 | Опрос закрыт</p>
+      <nav class="flex items-center space-x-8">
+        <ul class="flex space-x-8 text-sm font-semibold uppercase tracking-wide">
+          <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+          <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+          <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+          <li><a href="index.html#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+        </ul>
+        <div class="flex space-x-4">
+          <a href="index.html#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+        </div>
+      </nav>
     </div>
+  </header>
 
-    <!-- Вопрос 2 -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h3 class="text-lg font-semibold mb-2">Выбрать секретарем собрания Байкова Олега Романовича</h3>
-      <div class="space-y-2">
-        <div class="flex justify-between">
-          <span>За</span>
-          <span>56 голосов (100%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
-        </div>
+  <section class="bg-surface py-24">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">Голосование 🗳️</h2>
 
-        <div class="flex justify-between">
-          <span>Против</span>
-          <span>0 голосов</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-red-500 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
-
-        <div class="flex justify-between">
-          <span>Воздержался</span>
-          <span>0 голосов</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
+      <!-- Инфо-блок -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 fade-in animation-delay-600">
+        <h3 class="text-xl font-semibold mb-2 text-primary">
+          Общее собрание собственников помещений по адресу:<br>
+          115184, г. Москва, Озерковская наб., дом 26
+        </h3>
+        <p class="text-sm text-body">
+          Период проведения: <strong>25 октября 2023, 10:00 — 20 ноября 2023, 10:00</strong>
+        </p>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Всего голосов: 56 | Опрос закрыт</p>
-    </div>
 
-    <!-- Вопрос 3 -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h3 class="text-lg font-semibold mb-2">2. Утвердить с 1 декабря 2023 тариф на содержание и ремонт — 115 руб./кв.м.</h3>
-      <div class="space-y-2">
-        <div class="flex justify-between">
-          <span>За</span>
-          <span>53 голоса (95%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
-        </div>
+      <!-- Голосования -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 hover-scale fade-in animation-delay-800">
+        <h3 class="text-lg font-semibold mb-2 text-primary">1. Избрать председателем собрания Яковлева Андрея Яковлевича</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between">
+            <span class="text-body">За</span>
+            <span class="text-body">56 голосов (100%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Против</span>
-          <span>3 голоса (5%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-red-500 h-2.5 rounded-full" style="width: 5%"></div>
-        </div>
+          <div class="flex justify-between">
+            <span class="text-body">Против</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-red-500 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Воздержался</span>
-          <span>0 голосов</span>
+          <div class="flex justify-between">
+            <span class="text-body">Воздержался</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
         </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
+        <p class="text-sm text-body mt-2">Всего голосов: 56 | Опрос закрыт</p>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Всего голосов: 56 | Опрос закрыт</p>
-    </div>
 
-    <!-- Вопрос 4 -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h3 class="text-lg font-semibold mb-2">3. Утвердить с 1 декабря 2023 тариф на охрану — 13,74 руб./кв.м.</h3>
-      <div class="space-y-2">
-        <div class="flex justify-between">
-          <span>За</span>
-          <span>55 голосов (98%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-green-500 h-2.5 rounded-full" style="width: 98%"></div>
-        </div>
+      <!-- Вопрос 2 -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 hover-scale fade-in animation-delay-1000">
+        <h3 class="text-lg font-semibold mb-2 text-primary">Выбрать секретарем собрания Байкова Олега Романовича</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between">
+            <span class="text-body">За</span>
+            <span class="text-body">56 голосов (100%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 100%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Против</span>
-          <span>1 голос (2%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-red-500 h-2.5 rounded-full" style="width: 2%"></div>
-        </div>
+          <div class="flex justify-between">
+            <span class="text-body">Против</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-red-500 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Воздержался</span>
-          <span>0 голосов</span>
+          <div class="flex justify-between">
+            <span class="text-body">Воздержался</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
         </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
+        <p class="text-sm text-body mt-2">Всего голосов: 56 | Опрос закрыт</p>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Всего голосов: 56 | Опрос закрыт</p>
-    </div>
 
-    <!-- Вопрос 5 -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h3 class="text-lg font-semibold mb-2">4. Утвердить с 1 декабря 2023 тариф на содержание и ремонт паркинга — 732,45 руб./машиноместо</h3>
-      <div class="space-y-2">
-        <div class="flex justify-between">
-          <span>За</span>
-          <span>55 голосов (98%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-green-500 h-2.5 rounded-full" style="width: 98%"></div>
-        </div>
+      <!-- Вопрос 3 -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 hover-scale fade-in animation-delay-1200">
+        <h3 class="text-lg font-semibold mb-2 text-primary">2. Утвердить с 1 декабря 2023 тариф на содержание и ремонт — 115 руб./кв.м.</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between">
+            <span class="text-body">За</span>
+            <span class="text-body">53 голоса (95%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Против</span>
-          <span>1 голос (2%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-red-500 h-2.5 rounded-full" style="width: 2%"></div>
-        </div>
+          <div class="flex justify-between">
+            <span class="text-body">Против</span>
+            <span class="text-body">3 голоса (5%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-red-500 h-2.5 rounded-full" style="width: 5%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Воздержался</span>
-          <span>0 голосов</span>
+          <div class="flex justify-between">
+            <span class="text-body">Воздержался</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
         </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
+        <p class="text-sm text-body mt-2">Всего голосов: 56 | Опрос закрыт</p>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Всего голосов: 56 | Опрос закрыт</p>
-    </div>
 
-    <!-- Вопрос 6 -->
-    <div class="bg-white rounded-xl shadow p-6 mb-6">
-      <h3 class="text-lg font-semibold mb-2">5. Утвердить с 1 декабря 2023 тариф на охрану паркинга — 545,62 руб./машиноместо</h3>
-      <div class="space-y-2">
-        <div class="flex justify-between">
-          <span>За</span>
-          <span>54 голоса (95%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
-        </div>
+      <!-- Вопрос 4 -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 hover-scale fade-in animation-delay-1400">
+        <h3 class="text-lg font-semibold mb-2 text-primary">3. Утвердить с 1 декабря 2023 тариф на охрану — 13,74 руб./кв.м.</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between">
+            <span class="text-body">За</span>
+            <span class="text-body">55 голосов (98%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 98%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Против</span>
-          <span>3 голоса (5%)</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-red-500 h-2.5 rounded-full" style="width: 5%"></div>
-        </div>
+          <div class="flex justify-between">
+            <span class="text-body">Против</span>
+            <span class="text-body">1 голос (2%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-red-500 h-2.5 rounded-full" style="width: 2%"></div>
+          </div>
 
-        <div class="flex justify-between">
-          <span>Воздержался</span>
-          <span>0 голосов</span>
+          <div class="flex justify-between">
+            <span class="text-body">Воздержался</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
         </div>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
-        </div>
+        <p class="text-sm text-body mt-2">Всего голосов: 56 | Опрос закрыт</p>
       </div>
-      <p class="text-sm text-gray-600 mt-2">Всего голосов: 57 | Опрос закрыт</p>
+
+      <!-- Вопрос 5 -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 hover-scale fade-in animation-delay-1600">
+        <h3 class="text-lg font-semibold mb-2 text-primary">4. Утвердить с 1 декабря 2023 тариф на содержание и ремонт паркинга — 732,45 руб./машиноместо</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between">
+            <span class="text-body">За</span>
+            <span class="text-body">55 голосов (98%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 98%"></div>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-body">Против</span>
+            <span class="text-body">1 голос (2%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-red-500 h-2.5 rounded-full" style="width: 2%"></div>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-body">Воздержался</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
+        </div>
+        <p class="text-sm text-body mt-2">Всего голосов: 56 | Опрос закрыт</p>
+      </div>
+
+      <!-- Вопрос 6 -->
+      <div class="bg-white rounded-xl shadow-luxury p-6 mb-6 hover-scale fade-in animation-delay-1800">
+        <h3 class="text-lg font-semibold mb-2 text-primary">5. Утвердить с 1 декабря 2023 тариф на охрану паркинга — 545,62 руб./машиноместо</h3>
+        <div class="space-y-2">
+          <div class="flex justify-between">
+            <span class="text-body">За</span>
+            <span class="text-body">54 голоса (95%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-body">Против</span>
+            <span class="text-body">3 голоса (5%)</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-red-500 h-2.5 rounded-full" style="width: 5%"></div>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-body">Воздержался</span>
+            <span class="text-body">0 голосов</span>
+          </div>
+          <div class="w-full bg-secondary rounded-full h-2.5">
+            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 0%"></div>
+          </div>
+        </div>
+        <p class="text-sm text-body mt-2">Всего голосов: 57 | Опрос закрыт</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Кнопка "Наверх" -->
-<button onclick="smoothScrollToTop()" class="scroll-btn">
-  <svg class="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
-  </svg>
-</button>
+  <footer class="bg-primary py-12 text-body text-sm">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      © 2025 ТСН Озерковская 26. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
+    </div>
+  </footer>
 
-<!-- Скрипт плавного скролла -->
-<script>
-  function smoothScrollToTop() {
-    const scrollStep = -window.scrollY / 80;
-    const scrollInterval = 5;
+  <button onclick="smoothScrollToTop()" class="scroll-btn">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 8l-6 6h12l-6-6z"/>
+    </svg>
+  </button>
 
-    let scrollAnimation = setInterval(() => {
-      if (window.scrollY > 0) {
-        window.scrollBy(0, scrollStep);
-      } else {
-        clearInterval(scrollAnimation);
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Анимация появления заголовка
+    gsap.fromTo(
+      'h2',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: 'h2',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
       }
-    }, scrollInterval);
-  }
-</script>
+    );
+
+    // Анимация появления карточек
+    gsap.utils.toArray('.fade-in').forEach((element, index) => {
+      gsap.fromTo(
+        element,
+        { opacity: 0, y: 40, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: index * 0.1,
+        }
+      );
+    });
+
+    // Эффект наведения для карточек
+    gsap.utils.toArray('.hover-scale').forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        gsap.to(element, { scale: 1.05, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)', duration: 0.3, ease: 'power1.out' });
+      });
+      element.addEventListener('mouseleave', () => {
+        gsap.to(element, { scale: 1, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)', duration: 0.3, ease: 'power1.out' });
+      });
+    });
+
+    function smoothScrollToTop() {
+      const scrollStep = -window.scrollY / 80;
+      const scrollInterval = 5;
+
+      let scrollAnimation = setInterval(() => {
+        if (window.scrollY > 0) {
+          window.scrollBy(0, scrollStep);
+        } else {
+          clearInterval(scrollAnimation);
+        }
+      }, scrollInterval);
+    }
+  </script>
+</body>
+</html>
