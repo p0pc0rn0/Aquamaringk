@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ЖК Аквамарин</title>
+  <!-- Note: cdn.tailwindcss.com is not recommended for production. Install Tailwind CSS as a PostCSS plugin or use Tailwind CLI: https://tailwindcss.com/docs/installation -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -13,7 +14,7 @@
         extend: {
           colors: {
             primary: '#1A2526', // Deep navy for sophistication
-            accent: '#C0A372', // Soft gold for luxury
+            accent: '#C0A372', // Soft gold
             secondary: '#E5E7EB', // Light gray for hero text
             body: '#4B5563', // Darker gray for body text readability
             background: '#F7F7F5', // Warm off-white
@@ -49,6 +50,37 @@
     .doc-tile:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); background-color: rgba(192, 163, 114, 0.1); }
     .section-divider { border-top: 1px solid rgba(192, 163, 114, 0.2); }
     .tile-icon { display: inline-block; }
+
+    /* Background text for Documents section */
+    .bg-watermark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .watermark-line {
+      position: absolute;
+      white-space: nowrap;
+      transform: rotate(-45deg);
+      color: #C0A372;
+      font-size: 1.5rem;
+      font-weight: 700;
+      opacity: 0.08;
+      font-family: 'Cinzel', serif;
+      animation: scroll-watermark 20s linear infinite;
+    }
+    @keyframes scroll-watermark {
+      0% { transform: rotate(-45deg) translateY(50vh); }
+      100% { transform: rotate(-45deg) translateY(-100vh); }
+    }
+    .documents-section {
+      position: relative;
+      z-index: 1;
+    }
   </style>
 </head>
 
@@ -152,14 +184,36 @@
     </div>
   </section>
 
-  <section id="documents" class="py-24 section-divider">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Документы</h2>
-      <ul class="space-y-6">
-        <li><a href="TireServicePrice2022_3.pdf" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Прайс-лист на услуги шиномонтажа</a></li>
-        <li><a href="TireServicePrice2025.pdf" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Прайс-лист на услуги автомойки</a></li>
-        <li><a href="tur2.pdf" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Презентация ООО "ДК ТУР"</a></li>
-        <li><a href="#" class="block border border-accent/20 p-6 rounded-2xl doc-tile fade-in-doc text-body text-lg leading-relaxed">📄 Правила проживания</a></li>
+  <section id="documents" class="py-24 section-divider bg-[#F7F7F5] documents-section">
+    <div class="bg-watermark">
+      <div class="watermark-line" style="top:0; left:-100vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.3125vh; left:-90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.625vh; left:-80vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.9375vh; left:-70vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.25vh; left:-60vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.5625vh; left:-50vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.875vh; left:-40vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.1875vh; left:-30vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.5vh; left:-20vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.8125vh; left:-10vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.125vh; left:0vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.4375vh; left:10vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.75vh; left:20vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.0625vh; left:30vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.375vh; left:40vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.6875vh; left:50vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:5vh; left:60vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:5.3125vh; left:70vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:5.625vh; left:80vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:5.9375vh; left:90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 relative z-10">
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-10">Документы</h2>
+      <ul class="space-y-6 text-lg">
+        <li><a href="TireServicePrice2022_3.pdf" class="block p-6 rounded-xl bg-white shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Прайс-лист на услуги шиномонтажа</a></li>
+        <li><a href="TireServicePrice2025.pdf" class="block p-6 rounded-xl bg-white shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Прайс-лист на услуги автомойки</a></li>
+        <li><a href="tur2.pdf" class="block p-6 rounded-xl bg-white shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Презентация ООО "ДК ТУР"</a></li>
+        <li><a href="#" class="block p-6 rounded-xl bg-white shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Правила проживания</a></li>
       </ul>
     </div>
   </section>
