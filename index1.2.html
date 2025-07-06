@@ -9,23 +9,19 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
+      darkMode: 'media',
       theme: {
         extend: {
           colors: {
-            primary: '#2e2f2f1A2526',
+            primary: '#1A2526',
             accent: '#C0A372',
             secondary: '#E5E7EB',
             body: '#4B5563',
-            background: {
-              DEFAULT: '#F7F7F5',
-              dark: '#2e2f2f',
-            },
-            surface: {
-              DEFAULT: '#FFFFFF',
-              dark: '#2e2f2f',
-            },
-            bodyDark: '#A0AEC0',
+            background: '#F7F7F5',
+            surface: '#FFFFFF',
+            darkbg: '#121212',
+            darksurface: '#1E1E1E',
+            darktext: '#E0E0E0',
           },
           fontFamily: {
             sans: ['Montserrat', 'sans-serif'],
@@ -56,21 +52,19 @@
     .doc-tile { transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease; }
     .doc-tile:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); background-color: rgba(192, 163, 114, 0.1); }
     .section-divider { border-top: 1px solid rgba(192, 163, 114, 0.2); }
+    .tile-icon { display: inline-block; }
 
     /* Темная тема */
     .dark .section-divider { border-top: 1px solid rgba(192, 163, 114, 0.4); }
     .dark .doc-tile:hover { background-color: rgba(192, 163, 114, 0.2); }
-    .dark .bg-background { background-color: #4e5050; }
-    .dark .bg-surface { background-color: #4e5050; }
-    .dark .text-primary { color: #E5E7EB; }
+    .dark .bg-background { background-color: #121212; }
+    .dark .bg-surface { background-color: #1E1E1E; }
+    .dark .text-primary { color: #E0E0E0; }
     .dark .text-secondary { color: #A0AEC0; }
     .dark .text-body { color: #A0AEC0; }
-    .dark .bg-watermark .watermark-line { color: rgba(192, 163, 114, 0.15); }
-    .dark header.bg-surface { background-color: #2e2f2f; }
-    .dark footer.bg-primary { background-color: #0F1414; }
-    .dark .parallax-bg .bg-gradient-to-b { from: transparent; to: #4B5D68/70; } /* Изменен на серый #4B5D68 */
+    .dark .parallax-bg .bg-gradient-to-b { from: transparent; to: #1E1E1E/70; }
     .dark .hover-scale:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
-    .dark input, .dark textarea, .dark select { background-color: #2e2f2f; border-color: #4B5563; color: #A0AEC0; }
+    .dark input, .dark textarea, .dark select { background-color: #1E1E1E; border-color: #4B5563; color: #E0E0E0; }
     .dark input:focus, .dark textarea:focus, .dark select:focus { border-color: #C0A372; }
 
     /* Background text for Documents section */
@@ -95,6 +89,7 @@
       font-family: 'Cinzel', serif;
       animation: scroll-watermark 20s linear infinite;
     }
+    .dark .watermark-line { color: rgba(192, 163, 114, 0.15); }
     @keyframes scroll-watermark {
       0% { transform: rotate(-45deg) translateY(50vh); }
       100% { transform: rotate(-45deg) translateY(-100vh); }
@@ -103,41 +98,40 @@
       position: relative;
       z-index: 1;
     }
-    .tile-icon { display: inline-block; }
   </style>
 </head>
 
-<body class="bg-background text-primary font-sans antialiased" data-theme="auto">
-  <header class="bg-surface sticky top-0 z-50 shadow-luxury">
+<body class="bg-background text-body font-sans antialiased dark:bg-darkbg dark:text-darktext">
+
+  <header class="bg-surface sticky top-0 z-50 shadow-luxury dark:bg-darksurface">
     <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
       <div class="flex items-center space-x-4">
         <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
-        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
+        <div class="text-3xl font-serif font-bold text-primary dark:text-darktext">ЖК Аквамарин</div>
       </div>
       <nav class="flex items-center space-x-8">
         <ul class="flex space-x-8 text-sm font-semibold uppercase tracking-wide">
-          <li><a href="#" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
-          <li><a href="#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
-          <li><a href="#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
-          <li><a href="#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+          <li><a href="#" class="text-primary dark:text-darktext hover:text-accent transition-colors duration-300">Главная</a></li>
+          <li><a href="#news" class="text-primary dark:text-darktext hover:text-accent transition-colors duration-300">Новости</a></li>
+          <li><a href="#documents" class="text-primary dark:text-darktext hover:text-accent transition-colors duration-300">Документы</a></li>
+          <li><a href="#contacts" class="text-primary dark:text-darktext hover:text-accent transition-colors duration-300">Контакты</a></li>
         </ul>
         <div class="flex space-x-4">
-          <a href="#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
-          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
-          <button id="theme-toggle" class="border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Темная тема</button>
+          <a href="#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 dark:text-darktext">Оплата</a>
+          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300 dark:text-darktext">Личный кабинет</a>
         </div>
       </nav>
     </div>
   </header>
 
   <section class="relative h-screen overflow-hidden parallax-bg" style="background-image: url('1.1.webp');">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/70 z-10"></div>
-    <div class="relative z-20 flex flex-col justify-center items-center h-full text-center text-secondary">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/70 z-10 dark:to-darksurface/70"></div>
+    <div class="relative z-20 flex flex-col justify-center items-center h-full text-center text-secondary dark:text-darktext">
       <h1 class="text-6xl md:text-7xl font-serif font-bold mb-6 animate-fade-in-up">ЖК Аквамарин</h1>
       <p class="text-xl md:text-2xl mb-8 max-w-2xl animate-fade-in-up animation-delay-200">Эксклюзивная резиденция для тех, кто ценит утонченность и комфорт</p>
       <div class="flex space-x-6">
-        <a href="#payment" class="bg-accent text-surface px-8 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 animate-fade-in-up animation-delay-400">Оплатить онлайн</a>
-        <a href="#news" class="border border-secondary px-8 py-3 rounded-full text-secondary font-semibold hover:bg-secondary hover:text-primary transition duration-300 animate-fade-in-up animation-delay-600">Новости</a>
+        <a href="#payment" class="bg-accent text-surface px-8 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 animate-fade-in-up animation-delay-400 dark:text-darktext">Оплатить онлайн</a>
+        <a href="#news" class="border border-secondary px-8 py-3 rounded-full text-secondary font-semibold hover:bg-secondary hover:text-primary transition duration-300 animate-fade-in-up animation-delay-600 dark:text-darktext">Новости</a>
       </div>
     </div>
   </section>
@@ -146,68 +140,68 @@
     <div class="max-w-7xl mx-auto px-4">
       <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Ваш новый уровень жизни</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <a href="info.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="info.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile dark:bg-darksurface">
           <div class="flex flex-col items-center text-center">
             <div class="text-3xl mb-6 text-accent tile-icon">ℹ️</div>
-            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Информация</h3>
-            <p class="text-body text-lg leading-relaxed">Все о правилах проживания и важных документах для резидентов.</p>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors dark:text-darktext">Информация</h3>
+            <p class="text-body text-lg leading-relaxed dark:text-darktext">Все о правилах проживания и важных документах для резидентов.</p>
           </div>
         </a>
-        <a href="announcements.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="announcements.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile dark:bg-darksurface">
           <div class="flex flex-col items-center text-center">
             <div class="text-3xl mb-6 text-accent tile-icon">📢</div>
-            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Объявления</h3>
-            <p class="text-body text-lg leading-relaxed">Актуальные события и уведомления для жителей комплекса.</p>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors dark:text-darktext">Объявления</h3>
+            <p class="text-body text-lg leading-relaxed dark:text-darktext">Актуальные события и уведомления для жителей комплекса.</p>
           </div>
         </a>
-        <a href="tariffs.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="tariffs.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile dark:bg-darksurface">
           <div class="flex flex-col items-center text-center">
             <div class="text-3xl mb-6 text-accent tile-icon">💰</div>
-            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Тарифы</h3>
-            <p class="text-body text-lg leading-relaxed">Информация о стоимости услуг и обслуживания резиденции.</p>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors dark:text-darktext">Тарифы</h3>
+            <p class="text-body text-lg leading-relaxed dark:text-darktext">Информация о стоимости услуг и обслуживания резиденции.</p>
           </div>
         </a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 max-w-4xl mx-auto">
-        <a href="voting.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="voting.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile dark:bg-darksurface">
           <div class="flex flex-col items-center text-center">
             <div class="text-3xl mb-6 text-accent tile-icon">✅</div>
-            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Голосования</h3>
-            <p class="text-body text-lg leading-relaxed">Участвуйте в принятии решений по жизни комплекса.</p>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors dark:text-darktext">Голосования</h3>
+            <p class="text-body text-lg leading-relaxed dark:text-darktext">Участвуйте в принятии решений по жизни комплекса.</p>
           </div>
         </a>
-        <a href="services.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="services.html" class="group block bg-surface p-10 rounded-2xl shadow-luxury hover-scale fade-in tile dark:bg-darksurface">
           <div class="flex flex-col items-center text-center">
             <div class="text-3xl mb-6 text-accent tile-icon">🛎️</div>
-            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors">Услуги</h3>
-            <p class="text-body text-lg leading-relaxed">Эксклюзивные сервисы для вашего комфорта и удобства.</p>
+            <h3 class="text-2xl font-serif font-semibold mb-4 group-hover:text-accent transition-colors dark:text-darktext">Услуги</h3>
+            <p class="text-body text-lg leading-relaxed dark:text-darktext">Эксклюзивные сервисы для вашего комфорта и удобства.</p>
           </div>
         </a>
       </div>
     </div>
   </section>
 
-  <section id="news" class="py-24 bg-surface section-divider">
+  <section id="news" class="py-24 bg-surface section-divider dark:bg-darksurface">
     <div class="max-w-7xl mx-auto px-4">
-      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16">Новости резиденции</h2>
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 dark:text-darktext">Новости резиденции</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale">
-          <h3 class="text-xl font-semibold mb-3 text-accent">💧 Отключение воды 25 июня</h3>
-          <p class="text-body text-lg leading-relaxed">С 10:00 до 16:00 будет отключение холодной воды для проведения ремонтных работ.</p>
+        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale dark:bg-darkbg">
+          <h3 class="text-xl font-semibold mb-3 text-accent dark:text-darktext">💧 Отключение воды 25 июня</h3>
+          <p class="text-body text-lg leading-relaxed dark:text-darktext">С 10:00 до 16:00 будет отключение холодной воды для проведения ремонтных работ.</p>
         </div>
-        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale">
-          <h3 class="text-xl font-semibold mb-3 text-accent">🛠️ Работы по благоустройству</h3>
-          <p class="text-body text-lg leading-relaxed">Обновление детской площадки и озеленение территории комплекса.</p>
+        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale dark:bg-darkbg">
+          <h3 class="text-xl font-semibold mb-3 text-accent dark:text-darktext">🛠️ Работы по благоустройству</h3>
+          <p class="text-body text-lg leading-relaxed dark:text-darktext">Обновление детской площадки и озеленение территории комплекса.</p>
         </div>
-        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale">
-          <h3 class="text-xl font-semibold mb-3 text-accent">💡 Собрание жильцов 1 июля</h3>
-          <p class="text-body text-lg leading-relaxed">Отчёт правления и обсуждение планов на следующий год.</p>
+        <div class="bg-background p-8 rounded-2xl shadow-luxury fade-in hover-scale dark:bg-darkbg">
+          <h3 class="text-xl font-semibold mb-3 text-accent dark:text-darktext">💡 Собрание жильцов 1 июля</h3>
+          <p class="text-body text-lg leading-relaxed dark:text-darktext">Отчёт правления и обсуждение планов на следующий год.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="documents" class="py-24 section-divider bg-background documents-section">
+  <section id="documents" class="py-24 section-divider bg-background documents-section dark:bg-darkbg">
     <div class="bg-watermark">
       <div class="watermark-line" style="top:0; left:-100vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
       <div class="watermark-line" style="top:0.3125vh; left:-90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
@@ -231,24 +225,24 @@
       <div class="watermark-line" style="top:5.9375vh; left:90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
     </div>
     <div class="max-w-4xl mx-auto px-4 relative z-10">
-      <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-10">Документы</h2>
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-10 dark:text-darktext">Документы</h2>
       <ul class="space-y-6 text-lg">
-        <li><a href="TireServicePrice2022_3.pdf" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Прайс-лист на услуги шиномонтажа</a></li>
-        <li><a href="TireServicePrice2025.pdf" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Прайс-лист на услуги автомойки</a></li>
-        <li><a href="tur2.pdf" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Презентация ООО "ДК ТУР"</a></li>
-        <li><a href="#" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc">📄 Правила проживания</a></li>
+        <li><a href="TireServicePrice2022_3.pdf" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc dark:bg-darksurface">📄 Прайс-лист на услуги шиномонтажа</a></li>
+        <li><a href="TireServicePrice2025.pdf" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc dark:bg-darksurface">📄 Прайс-лист на услуги автомойки</a></li>
+        <li><a href="tur2.pdf" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc dark:bg-darksurface">📄 Презентация ООО "ДК ТУР"</a></li>
+        <li><a href="#" class="block p-6 rounded-xl bg-surface shadow border border-[#C0A372]/30 hover:bg-[#C0A372]/10 transition doc-tile fade-in-doc dark:bg-darksurface">📄 Правила проживания</a></li>
       </ul>
     </div>
   </section>
 
-  <section id="payment" class="py-24 bg-surface section-divider">
+  <section id="payment" class="py-24 bg-background section-divider dark:bg-darkbg">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-4xl md:text-5xl font-serif mb-8">Оплата онлайн</h2>
-      <p class="text-body text-lg leading-relaxed mb-8 max-w-2xl mx-auto">Оплачивайте услуги резиденции быстро и удобно через QR-код или банковские реквизиты.</p>
+      <h2 class="text-4xl md:text-5xl font-serif mb-8 dark:text-darktext">Оплата онлайн</h2>
+      <p class="text-body text-lg leading-relaxed mb-8 max-w-2xl mx-auto dark:text-darktext">Оплачивайте услуги резиденции быстро и удобно через QR-код или банковские реквизиты.</p>
       <div class="mb-8">
         <img src="qr-code.png" alt="QR код для оплаты" class="mx-auto w-56 h-56 rounded-2xl shadow-luxury">
       </div>
-      <div class="bg-surface inline-block p-8 rounded-2xl shadow-luxury text-body text-lg leading-relaxed">
+      <div class="bg-surface inline-block p-8 rounded-2xl shadow-luxury text-body text-lg leading-relaxed dark:bg-darksurface dark:text-darktext">
         <p><strong>Получатель:</strong> ТСН Аквамарин</p>
         <p><strong>ИНН:</strong> 0000000000</p>
         <p><strong>КПП:</strong> 000000000</p>
@@ -260,32 +254,32 @@
     </div>
   </section>
 
-  <section id="contacts" class="py-24 section-divider">
+  <section id="contacts" class="py-24 section-divider dark:bg-darkbg">
     <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>
-        <h2 class="text-4xl md:text-5xl font-serif mb-8">Контакты</h2>
-        <p class="text-body text-lg leading-relaxed mb-2"><strong>Телефон:</strong> +7 (995) 000-12-23</p>
-        <p class="text-body text-lg leading-relaxed mb-2"><strong>Email:</strong> tsn.akvamarin@bk.ru</p>
-        <p class="text-body text-lg leading-relaxed mb-6"><strong>Адрес:</strong> г. Москва, Озерковская, 26</p>
+        <h2 class="text-4xl md:text-5xl font-serif mb-8 dark:text-darktext">Контакты</h2>
+        <p class="text-body text-lg leading-relaxed mb-2 dark:text-darktext"><strong>Телефон:</strong> +7 (995) 000-12-23</p>
+        <p class="text-body text-lg leading-relaxed mb-2 dark:text-darktext"><strong>Email:</strong> tsn.akvamarin@bk.ru</p>
+        <p class="text-body text-lg leading-relaxed mb-6 dark:text-darktext"><strong>Адрес:</strong> г. Москва, Озерковская, 26</p>
         <div class="rounded-2xl overflow-hidden shadow-luxury">
           <iframe src="https://yandex.ru/map-widget/v1/?ll=37.637407,55.739564&z=16&ol=geo&oid=1191599212&pt=37.637407,55.739564,pm2rdm&pl=37.637407,55.739564,ЖК Аквамарин" width="100%" height="300" frameborder="0" allowfullscreen="true"></iframe>
         </div>
       </div>
       <div>
-        <h3 class="text-2xl font-serif font-semibold mb-6">Свяжитесь с нами</h3>
+        <h3 class="text-2xl font-serif font-semibold mb-6 dark:text-darktext">Свяжитесь с нами</h3>
         <div class="space-y-6">
-          <input type="text" placeholder="Ваше имя" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-lg" required>
-          <input type="email" placeholder="Email" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-lg" required>
-          <textarea placeholder="Сообщение" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-lg" rows="5" required></textarea>
-          <button type="submit" class="bg-accent text-surface px-8 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Отправить</button>
+          <input type="text" placeholder="Ваше имя" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-lg dark:bg-darksurface dark:text-darktext" required>
+          <input type="email" placeholder="Email" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-lg dark:bg-darksurface dark:text-darktext" required>
+          <textarea placeholder="Сообщение" class="w-full border border-accent/20 rounded-2xl p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-lg dark:bg-darksurface dark:text-darktext" rows="5" required></textarea>
+          <button type="submit" class="bg-accent text-surface px-8 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 dark:text-darktext">Отправить</button>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-primary py-12 text-body text-sm">
+  <footer class="bg-primary py-12 text-body text-sm dark:bg-darksurface dark:text-darktext">
     <div class="max-w-7xl mx-auto px-4 text-center">
-      © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
+      © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors dark:text-darktext">Политика конфиденциальности</a>
     </div>
   </footer>
 
@@ -309,7 +303,7 @@
             start: 'top 85%',
             toggleActions: 'play none none none',
           },
-          delay: index * 0.1
+          delay: index * 0.1 // Stagger effect
         }
       );
     });
@@ -349,7 +343,7 @@
             start: 'top 85%',
             toggleActions: 'play none none none',
           },
-          delay: index * 0.15
+          delay: index * 0.15 // Stagger effect
         }
       );
     });
@@ -394,41 +388,6 @@
           },
         }
       );
-    });
-
-    // Theme toggle logic
-    const html = document.documentElement;
-    const themeToggle = document.getElementById('theme-toggle');
-    let theme = localStorage.getItem('theme') || 'auto';
-    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-    function setTheme(theme) {
-      if (theme === 'auto') {
-        html.classList.toggle('dark', systemTheme === 'dark');
-        themeToggle.textContent = systemTheme === 'dark' ? 'Светлая тема' : 'Темная тема';
-      } else {
-        html.classList.toggle('dark', theme === 'dark');
-        themeToggle.textContent = theme === 'dark' ? 'Светлая тема' : 'Темная тема';
-      }
-      localStorage.setItem('theme', theme);
-    }
-
-    if (theme === 'auto') {
-      setTheme('auto');
-    } else {
-      html.classList.toggle('dark', theme === 'dark');
-      themeToggle.textContent = theme === 'dark' ? 'Светлая тема' : 'Темная тема';
-    }
-
-    themeToggle.addEventListener('click', () => {
-      theme = theme === 'auto' ? 'dark' : theme === 'dark' ? 'light' : 'auto';
-      setTheme(theme);
-    });
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-      if (theme === 'auto') {
-        setTheme('auto');
-      }
     });
   </script>
 </body>
