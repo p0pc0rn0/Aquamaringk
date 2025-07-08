@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Официальный сайт ЖК Аквамарин. Объявления для жителей, новости, правила и контакты.">
+  <meta property="og:title" content="ЖК Аквамарин – Объявления для жителей" />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:description" content="Актуальные объявления для жителей ЖК Аквамарин." />
   <title>Объявления | ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -33,6 +37,22 @@
           lineHeight: {
             'relaxed': '1.75',
           },
+          screens: {
+            'xs': '320px',
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
         },
       },
     };
@@ -40,150 +60,277 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    summary::-webkit-details-marker { display: none; }
     .fade-in { opacity: 0; transform: translateY(30px); }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
     .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .hover-scale:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
-    .details-group { transition: all 0.4s ease; }
-    .details-group[open] summary span:last-child { transform: rotate(45deg); }
-    .details-group summary { cursor: pointer; }
+    .accordion-item { transition: all 0.4s ease; min-height: 80px; }
+    .accordion-item.open {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-radius: 1rem;
+    }
+    .accordion-header { cursor: pointer; width: 100%; text-align: left; }
+    .accordion-header:hover { color: #C0A372; }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 1000px;
+      opacity: 1;
+    }
+    .accordion-item svg {
+      transition: transform 0.3s ease;
+    }
+    .accordion-item.open svg {
+      transform: rotate(45deg);
+    }
+    .menu-icon { transition: transform 0.3s ease; }
+    .menu-icon.open { transform: rotate(90deg); }
+    .mobile-nav-overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
+    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; align-items: center; gap: 0.5rem; }
+    @media (max-width: 767px) {
+      .menu-toggle { display: flex; }
+      nav.md\\:flex { display: none; }
+      #announcements h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #announcements h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+    .opacity-0 { opacity: 0; }
+    .opacity-100 { opacity: 1; }
   </style>
 </head>
 
 <body class="bg-background text-primary font-sans antialiased">
   <header class="bg-surface sticky top-0 z-50 shadow-luxury">
-    <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
-      <div class="flex items-center space-x-4">
-        <a href="index.html">
-          <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
-        </a>
-        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
-      </div>
-      <nav class="flex items-center space-x-8">
-        <ul class="flex space-x-8 text-sm font-semibold uppercase tracking-wide">
-          <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
-          <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
-          <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
-          <li><a href="index.html#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
-        </ul>
-        <div class="flex space-x-4">
-          <a href="index.html#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
-          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4 md:py-6">
+        <div class="flex items-center space-x-4">
+          <a href="index.html">
+            <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+          </a>
+          <div class="text-2xl md:text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
         </div>
-      </nav>
+        <div class="flex items-center">
+          <nav class="hidden md:flex md:items-center md:space-x-8">
+            <ul class="nav-links flex space-x-6 md:space-x-8 text-sm font-semibold uppercase tracking-wide">
+              <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+              <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+              <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+              <li><a href="index.html#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+            </ul>
+            <div class="nav-buttons hidden md:flex md:space-x-4">
+              <a href="index.html#payment" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+              <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+            </div>
+          </nav>
+          <div class="md:hidden relative z-50">
+            <div class="menu-toggle flex items-center space-x-2" onclick="toggleMenu()">
+              <span id="burgerIcon" class="text-xl menu-icon">☰</span>
+              <span class="text-sm font-semibold">Меню</span>
+            </div>
+            <div id="menuOverlay" class="fixed inset-0 hidden mobile-nav-overlay z-40" onclick="toggleMenu(true)"></div>
+            <nav id="mobileNav" class="header-nav-mobile fixed top-16 right-4 w-72 h-[calc(100vh-4rem)] bg-surface p-6 rounded-2xl shadow-luxury transform scale-y-0 opacity-0 hidden transition-all duration-300 z-50 overflow-y-auto">
+              <ul class="flex flex-col space-y-5 text-base font-semibold">
+                <li><a href="index.html" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Главная</a></li>
+                <li><a href="index.html#news" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Новости</a></li>
+                <li><a href="index.html#documents" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Документы</a></li>
+                <li><a href="index.html#contacts" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Контакты</a></li>
+              </ul>
+              <div class="mt-6 flex flex-col space-y-3">
+                <a href="index.html#payment" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Оплата</a>
+                <a href="https://lk.tsn-26.ru" target="_blank" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
     </div>
   </header>
 
-  <section id="announcements" class="bg-surface py-24">
+  <section id="announcements" class="bg-surface py-14 section-divider relative">
     <div class="max-w-7xl mx-auto px-4">
+      <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
+        <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
+      </div>
       <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">📢 Объявления для жителей</h2>
+      <div class="h-[2px] w-24 mx-auto bg-gradient-to-r from-accent to-transparent rounded-full mb-12"></div>
 
-      <div class="grid gap-6">
+      <div class="grid grid-cols-1 gap-8 auto-rows-auto">
         <!-- Объявление 1 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">28 марта 2024 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            28 марта 2024 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>🚗 В связи с ситуацией допуск автомобилей доставки и такси во двор ограничен.</p>
             <p>При заказе такси указывайте посадку/высадку — набережная вдоль дома или заказывайте пропуск через диспетчерскую.</p>
             <p class="text-accent font-semibold">ПРАВЛЕНИЕ ТСН «АКВАМАРИН»</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 2 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">27 марта 2024 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            27 марта 2024 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>🧽 С 8 апреля начинается мойка окон. Стоимость — 250 руб./м². Заказ через диспетчерскую.</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 3 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">27 марта 2024 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            27 марта 2024 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>🔧 С 4 апреля доступна сезонная смена колёс. Заказ через диспетчерскую.</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 4 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1200">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">24 октября 2023 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1200">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            24 октября 2023 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>📄 Уведомление о проведении общего собрания собственников в форме заочного голосования через систему «Дом-26.РФ».</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 5 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1400">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">2 апреля 2023 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1400">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            2 апреля 2023 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>🚿 Отключение горячей воды: с 14:00 10 июля по 13:59 20 июля 2023 г.</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 6 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1600">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">1 июля 2022 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1600">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            1 июля 2022 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>📈 С 1 июля изменились тарифы на ЖКУ. Актуальные тарифы доступны в разделе «Тарифы».</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 7 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1800">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">14 апреля 2022 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1800">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            14 апреля 2022 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>🧴 Стоимость мойки автомобилей скорректирована в связи с ростом цен на автохимию.</p>
           </div>
-        </details>
+        </div>
 
         <!-- Объявление 8 -->
-        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-2000">
-          <summary class="flex justify-between items-center cursor-pointer">
-            <span class="text-xl font-semibold text-primary">8 апреля 2022 года</span>
-            <span class="text-2xl transition-transform">➕</span>
-          </summary>
-          <div class="mt-4 text-body leading-relaxed space-y-2">
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-2000">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            8 апреля 2022 года
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
             <p>🧽 С 25 апреля 2022 года — мойка наружных окон методом промышленного альпинизма.</p>
             <p>Стоимость — 220 руб./м². Заказы через диспетчерскую.</p>
           </div>
-        </details>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="bg-primary py-12 text-body text-sm">
+  <footer class="bg-primary py-8 md:py-12 text-body text-sm">
     <div class="max-w-7xl mx-auto px-4 text-center">
       © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
     </div>
   </footer>
 
   <script>
+    function toggleMenu(forceClose = false) {
+      const nav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('menuOverlay');
+      const icon = document.getElementById('burgerIcon');
+
+      const isOpen = !nav.classList.contains('hidden');
+
+      if (forceClose || isOpen) {
+        nav.classList.add('scale-y-0', 'opacity-0');
+        setTimeout(() => nav.classList.add('hidden'), 300);
+        overlay.classList.add('hidden');
+        icon.classList.remove('open');
+      } else {
+        nav.classList.remove('hidden', 'scale-y-0', 'opacity-0');
+        overlay.classList.remove('hidden');
+        icon.classList.add('open');
+      }
+    }
+
+    document.addEventListener('click', function (event) {
+      const nav = document.getElementById('mobileNav');
+      const toggle = document.querySelector('.menu-toggle');
+      const overlay = document.getElementById('menuOverlay');
+
+      if (!nav.contains(event.target) && !toggle.contains(event.target) && overlay.contains(event.target)) {
+        toggleMenu(true);
+      }
+    });
+
+    document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        toggleMenu(true);
+        setTimeout(() => {
+          const href = link.getAttribute('href');
+          if (href && href !== '#') {
+            if (href === 'index.html' || href.startsWith('index.html#')) {
+              window.location.href = href;
+            } else {
+              document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        }, 300);
+      });
+    });
+
     gsap.registerPlugin(ScrollTrigger);
 
-    // Анимация появления заголовка
     gsap.fromTo(
       '#announcements h2',
       { opacity: 0, y: 50 },
@@ -200,19 +347,17 @@
       }
     );
 
-    // Анимация появления карточек
-    gsap.utils.toArray('details').forEach((detail, index) => {
+    gsap.utils.toArray('.accordion-item').forEach((item, index) => {
       gsap.fromTo(
-        detail,
-        { opacity: 0, y: 40, scale: 0.95 },
+        item,
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
           duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: detail,
+            trigger: item,
             start: 'top 85%',
             toggleActions: 'play none none none',
           },
@@ -221,13 +366,34 @@
       );
     });
 
-    // Эффект наведения для карточек
     gsap.utils.toArray('.hover-scale').forEach((element) => {
       element.addEventListener('mouseenter', () => {
         gsap.to(element, { scale: 1.05, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)', duration: 0.3, ease: 'power1.out' });
       });
       element.addEventListener('mouseleave', () => {
         gsap.to(element, { scale: 1, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)', duration: 0.3, ease: 'power1.out' });
+      });
+    });
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const content = item.querySelector('.accordion-content');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.accordion-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.accordion-content').style.maxHeight = null;
+          i.querySelector('.accordion-content').style.opacity = 0;
+          i.querySelector('svg').classList.remove('rotate-45');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.opacity = 1;
+          header.querySelector('svg').classList.add('rotate-45');
+        }
       });
     });
   </script>
