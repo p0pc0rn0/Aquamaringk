@@ -78,30 +78,54 @@
       .nav-buttons { flex-direction: column; gap: 1rem; }
     }
     .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; }
+    /* Mobile header fix */
+    @media (max-width: 767px) {
+      .header-nav-mobile { display: none; }
+      .header-nav-mobile.active { display: flex; flex-direction: column; }
+    }
   </style>
 </head>
 
 <body class="bg-background text-primary font-sans antialiased">
   <header class="bg-surface sticky top-0 z-50 shadow-luxury">
-    <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
-      <div class="flex items-center space-x-4">
-        <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
-        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
-      </div>
-      <div class="flex items-center">
-        <nav class="header-nav flex items-center space-x-8">
-          <ul class="nav-links flex space-x-8 text-sm font-semibold uppercase tracking-wide">
-            <li><a href="#" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
-            <li><a href="#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
-            <li><a href="#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
-            <li><a href="#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
-          </ul>
-          <div class="nav-buttons flex space-x-4">
-            <a href="#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
-            <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4 md:py-6">
+        <div class="flex items-center space-x-4">
+          <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+          <div class="text-2xl md:text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
+        </div>
+        <div class="flex items-center">
+          <nav class="header-nav hidden md:flex md:items-center md:space-x-8">
+            <ul class="nav-links flex space-x-6 md:space-x-8 text-sm font-semibold uppercase tracking-wide">
+              <li><a href="#" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+              <li><a href="#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+              <li><a href="#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+              <li><a href="#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+            </ul>
+            <div class="nav-buttons hidden md:flex md:space-x-4">
+              <a href="#payment" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+              <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+            </div>
+          </nav>
+          <div class="md:hidden">
+            <div class="menu-toggle flex items-center space-x-2" onclick="toggleMenu()">
+              <span class="text-xl">☰</span>
+              <span class="text-sm font-semibold">Меню</span>
+            </div>
+            <nav class="header-nav-mobile hidden mt-2 bg-surface p-4 rounded-lg shadow-lg">
+              <ul class="flex flex-col space-y-4 text-sm font-semibold">
+                <li><a href="#" class="text-primary hover:text-accent transition-colors duration-300 block">Главная</a></li>
+                <li><a href="#news" class="text-primary hover:text-accent transition-colors duration-300 block">Новости</a></li>
+                <li><a href="#documents" class="text-primary hover:text-accent transition-colors duration-300 block">Документы</a></li>
+                <li><a href="#contacts" class="text-primary hover:text-accent transition-colors duration-300 block">Контакты</a></li>
+              </ul>
+              <div class="mt-4 flex flex-col space-y-2">
+                <a href="#payment" class="bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 text-center">Оплата</a>
+                <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300 text-center">Личный кабинет</a>
+              </div>
+            </nav>
           </div>
-        </nav>
-        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        </div>
       </div>
     </div>
   </header>
@@ -267,9 +291,18 @@
 
   <script>
     function toggleMenu() {
-      const nav = document.querySelector('.header-nav');
-      nav.classList.toggle('active');
+      const nav = document.querySelector('.header-nav-mobile');
+      nav.classList.toggle('hidden');
     }
+
+    // Закрытие меню при клике вне его
+    document.addEventListener('click', function(event) {
+      const nav = document.querySelector('.header-nav-mobile');
+      const toggle = document.querySelector('.menu-toggle');
+      if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+        nav.classList.add('hidden');
+      }
+    });
 
     gsap.registerPlugin(ScrollTrigger);
 
