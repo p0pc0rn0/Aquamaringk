@@ -88,7 +88,7 @@
     #mobileNav {
       transform-origin: top;
       transition: transform 0.3s ease, opacity 0.3s ease;
-      max-height: 85vh; /* Убедимся, что это приоритетно */
+      max-height: 85vh;
     }
     /* Задний фон затемнённый */
     .mobile-nav-overlay {
@@ -124,17 +124,17 @@
               <span id="burgerIcon" class="text-xl menu-icon">☰</span>
               <span class="text-sm font-semibold">Меню</span>
             </div>
-            <div id="menuOverlay" class="fixed inset-0 hidden mobile-nav-overlay z-40"></div>
+            <div id="menuOverlay" class="fixed inset-0 hidden mobile-nav-overlay z-40" onclick="toggleMenu(true)"></div>
             <nav id="mobileNav" class="header-nav-mobile fixed top-16 right-4 w-72 h-[calc(100vh-4rem)] bg-surface p-6 rounded-2xl shadow-luxury transform scale-y-0 opacity-0 hidden transition-all duration-300 z-50 overflow-y-auto">
               <ul class="flex flex-col space-y-5 text-base font-semibold">
-                <li><a href="#" class="nav-link text-primary hover:text-accent transition-colors">Главная</a></li>
-                <li><a href="#news" class="nav-link text-primary hover:text-accent transition-colors">Новости</a></li>
-                <li><a href="#documents" class="nav-link text-primary hover:text-accent transition-colors">Документы</a></li>
-                <li><a href="#contacts" class="nav-link text-primary hover:text-accent transition-colors">Контакты</a></li>
+                <li><a href="#" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Главная</a></li>
+                <li><a href="#news" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Новости</a></li>
+                <li><a href="#documents" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Документы</a></li>
+                <li><a href="#contacts" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Контакты</a></li>
               </ul>
               <div class="mt-6 flex flex-col space-y-3">
-                <a href="#payment" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center">Оплата</a>
-                <a href="https://lk.tsn-26.ru" target="_blank" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center">Личный кабинет</a>
+                <a href="#payment" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Оплата</a>
+                <a href="https://lk.tsn-26.ru" target="_blank" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
               </div>
             </nav>
           </div>
@@ -308,18 +308,15 @@
       const overlay = document.getElementById('menuOverlay');
       const icon = document.getElementById('burgerIcon');
 
-      const isOpen = !nav.classList.contains('hidden') && !forceClose;
+      const isOpen = !nav.classList.contains('hidden');
 
-      if (isOpen) {
+      if (forceClose || isOpen) {
         nav.classList.add('scale-y-0', 'opacity-0');
         setTimeout(() => nav.classList.add('hidden'), 300);
         overlay.classList.add('hidden');
         icon.classList.remove('open');
       } else {
-        nav.classList.remove('hidden');
-        requestAnimationFrame(() => {
-          nav.classList.remove('scale-y-0', 'opacity-0');
-        });
+        nav.classList.remove('hidden', 'scale-y-0', 'opacity-0');
         overlay.classList.remove('hidden');
         icon.classList.add('open');
       }
@@ -330,17 +327,24 @@
       const nav = document.getElementById('mobileNav');
       const toggle = document.querySelector('.menu-toggle');
       const overlay = document.getElementById('menuOverlay');
-      const icon = document.getElementById('burgerIcon');
 
-      if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+      if (!nav.contains(event.target) && !toggle.contains(event.target) && overlay.contains(event.target)) {
         toggleMenu(true);
       }
     });
 
     // Закрытие по нажатию на ссылку
     document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault(); // Предотвращаем стандартное поведение, если нужно
         toggleMenu(true);
+        // Переход к указанному разделу после закрытия
+        setTimeout(() => {
+          const href = link.getAttribute('href');
+          if (href && href !== '#') {
+            document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 300);
       });
     });
 
