@@ -240,7 +240,8 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed">
-            <table class="w-full text-left">
+            <div class="table-view hidden md:block">
+              <table class="w-full text-left">
               <thead>
                 <tr>
                   <th>№ п/п</th>
@@ -1031,6 +1032,29 @@
                 </tr>
               </tbody>
             </table>
+            </div>
+            <div class="card-view block md:hidden space-y-4">
+              <div class="bg-white p-4 rounded-xl shadow-luxury">
+                <h3 class="font-semibold text-lg mb-2">Уборка мест общего пользования</h3>
+                <p class="text-body">💸 <span class="font-medium">5.67 руб/м²</span></p>
+                <p class="text-body">📊 <span class="font-medium">87 200 ₽ в месяц</span></p>
+              </div>
+              <div class="bg-white p-4 rounded-xl shadow-luxury">
+                <h3 class="font-semibold text-lg mb-2">Содержание и текущий ремонт общего имущества</h3>
+                <p class="text-body">💸 <span class="font-medium">66.69 руб/м²</span></p>
+                <p class="text-body">📊 <span class="font-medium">—</span></p>
+              </div>
+              <div class="bg-white p-4 rounded-xl shadow-luxury">
+                <h3 class="font-semibold text-lg mb-2">Охрана</h3>
+                <p class="text-body">💸 <span class="font-medium">10.76 руб/м²</span></p>
+                <p class="text-body">📊 <span class="font-medium">—</span></p>
+              </div>
+              <div class="bg-white p-4 rounded-xl shadow-luxury">
+                <h3 class="font-semibold text-lg mb-2">Домофон (запирающее устройство)</h3>
+                <p class="text-body">💸 <span class="font-medium">60.00 руб (за помещение)</span></p>
+                <p class="text-body">📊 <span class="font-medium">60 ₽ в месяц</span></p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1616,6 +1640,25 @@
           scrollTrigger: {
             trigger: item,
             start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: index * 0.1,
+        }
+      );
+    });
+
+    gsap.utils.toArray('.card-view > div').forEach((card, index) => {
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 90%',
             toggleActions: 'play none none none',
           },
           delay: index * 0.1,
