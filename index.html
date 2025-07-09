@@ -52,21 +52,36 @@
     .doc-tile:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); background-color: rgba(192, 163, 114, 0.1); }
     .section-divider { border-top: 1px solid rgba(192, 163, 114, 0.2); }
     .tile-icon { display: inline-block; }
-    .bg-watermark { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
+    .bg-watermark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
     .watermark-line {
       position: absolute;
       white-space: nowrap;
-      transform: rotate(-45deg);
       color: #C0A372;
-      font-size: 1.5rem;
       font-weight: 700;
-      opacity: 0.08;
       font-family: 'Cinzel', serif;
-      animation: scroll-watermark 20s linear infinite;
+      font-size: clamp(10px, 3vw, 24px);
+      opacity: 0.07;
+      transform: rotate(-45deg);
+      animation: scroll-watermark 40s linear infinite;
     }
     @keyframes scroll-watermark {
-      0% { transform: rotate(-45deg) translateY(50vh); }
-      100% { transform: rotate(-45deg) translateY(-100vh); }
+      0% { transform: rotate(-45deg) translateY(100vh); }
+      100% { transform: rotate(-45deg) translateY(-200vh); }
+    }
+    @media (max-width: 768px) {
+      .watermark-line {
+        font-size: clamp(8px, 2.5vw, 16px);
+        opacity: 0.04;
+      }
     }
     .documents-section { position: relative; z-index: 1; }
     /* Responsive header */
@@ -94,6 +109,13 @@
     .mobile-nav-overlay {
       background-color: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(2px);
+    }
+    /* Адаптивность для секций */
+    @media (max-width: 767px) {
+      #lifestyle h2, #documents h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #lifestyle h2, #documents h2 { font-size: 2.5rem; margin-bottom: 2rem; }
     }
   </style>
 </head>
@@ -155,8 +177,50 @@
     </div>
   </section>
 
-  <section class="py-16 md:py-24 section-divider">
-    <div class="max-w-7xl mx-auto px-4">
+  <section id="lifestyle" class="py-16 md:py-24 section-divider relative">
+    <div class="bg-watermark">
+      <div class="watermark-line" style="top:0vh; left:-100vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.125vh; left:-95vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.25vh; left:-90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.375vh; left:-85vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.5vh; left:-80vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.625vh; left:-75vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.75vh; left:-70vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:0.875vh; left:-65vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1vh; left:-60vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.125vh; left:-55vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.25vh; left:-50vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.375vh; left:-45vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.5vh; left:-40vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.625vh; left:-35vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.75vh; left:-30vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:1.875vh; left:-25vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2vh; left:-20vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.125vh; left:-15vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.25vh; left:-10vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.375vh; left:-5vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.5vh; left:0vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.625vh; left:5vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.75vh; left:10vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:2.875vh; left:15vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3vh; left:20vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.125vh; left:25vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.25vh; left:30vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.375vh; left:35vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.5vh; left:40vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.625vh; left:45vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.75vh; left:50vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:3.875vh; left:55vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4vh; left:60vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.125vh; left:65vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.25vh; left:70vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.375vh; left:75vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.5vh; left:80vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.625vh; left:85vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.75vh; left:90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+      <div class="watermark-line" style="top:4.875vh; left:95vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-center mb-12 md:mb-16">Ваш новый уровень жизни</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <a href="info.html" class="group block bg-surface p-6 md:p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
@@ -220,28 +284,9 @@
     </div>
   </section>
 
-  <section id="documents" class="py-16 md:py-24 section-divider bg-[#F7F7F5] documents-section">
-    <div class="bg-watermark">
-      <div class="watermark-line" style="top:0; left:-100vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:0.3125vh; left:-90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:0.625vh; left:-80vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:0.9375vh; left:-70vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:1.25vh; left:-60vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:1.5625vh; left:-50vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:1.875vh; left:-40vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:2.1875vh; left:-30vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:2.5vh; left:-20vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:2.8125vh; left:-10vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:3.125vh; left:0vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:3.4375vh; left:10vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:3.75vh; left:20vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:4.0625vh; left:30vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:4.375vh; left:40vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:4.6875vh; left:50vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:5vh; left:60vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:5.3125vh; left:70vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:5.625vh; left:80vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
-      <div class="watermark-line" style="top:5.9375vh; left:90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
+  <section id="documents" class="py-16 md:py-24 section-divider bg-[#F7F7F5] documents-section relative">
+    <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
+      <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
     </div>
     <div class="max-w-4xl mx-auto px-4 relative z-10">
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-center mb-8 md:mb-10">Документы</h2>
@@ -336,9 +381,8 @@
     // Закрытие по нажатию на ссылку
     document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
       link.addEventListener('click', (event) => {
-        event.preventDefault(); // Предотвращаем стандартное поведение, если нужно
+        event.preventDefault();
         toggleMenu(true);
-        // Переход к указанному разделу после закрытия
         setTimeout(() => {
           const href = link.getAttribute('href');
           if (href && href !== '#') {
