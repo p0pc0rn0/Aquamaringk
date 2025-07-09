@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Официальный сайт ЖК Аквамарин. Тарифы на содержание, обслуживание и дополнительные услуги для жителей.">
-  <meta property="og:title" content="ЖК Аквамарин – Тарифы и услуги" />
-  <meta property="og:image" content="logo.png" />
-  <meta property="og:description" content="Информация о тарифах и услугах для жителей ЖК Аквамарин." />
-  <title>Тарифы | ЖК Аквамарин</title>
+  <title>Тарифы - ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -37,22 +33,6 @@
           lineHeight: {
             'relaxed': '1.75',
           },
-          screens: {
-            'xs': '320px',
-            'sm': '640px',
-            'md': '768px',
-            'lg': '1024px',
-            'xl': '1280px',
-          },
-          animation: {
-            'fade-in': 'fadeIn 0.5s ease-out forwards',
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: '0', transform: 'translateY(10px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
-          },
         },
       },
     };
@@ -60,47 +40,35 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    .fade-in { opacity: 0; transform: translateY(30px); }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .hover-scale:not(.open) {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      z-index: 0;
+    summary::-webkit-details-marker { display: none; }
+    details[open] .table-content {
+      animation: slideDown 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+      max-height: 20000px;
+      overflow: hidden;
     }
-    .hover-scale:not(.open):hover {
-      transform: scale(1.03) translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-      z-index: 10;
-    }
-    .accordion-item.open {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      border-radius: 1rem;
-      z-index: 5;
-      position: relative;
-    }
-    .accordion-item { transition: all 0.4s ease; min-height: 80px; }
-    .accordion-header { cursor: pointer; width: 100%; text-align: left; }
-    .accordion-header:hover { color: #C0A372; }
-    .accordion-content {
+    details .table-content {
+      transition: max-height 1.2s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.6s ease, transform 0.6s ease;
       max-height: 0;
       overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.5s ease, opacity 0.5s ease;
     }
-    .accordion-item.open .accordion-content {
-      max-height: 20000px;
-      opacity: 1;
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+        max-height: 0;
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 20000px;
+      }
     }
-    .accordion-item svg {
-      transition: transform 0.3s ease;
-    }
-    .accordion-item.open svg {
-      transform: rotate(45deg);
-    }
-    .menu-icon { transition: transform 0.3s ease; }
-    .menu-icon.open { transform: rotate(90deg); }
-    .mobile-nav-overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
-    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; align-items: center; gap: 0.5rem; }
+    .fade-in { opacity: 0; transform: translateY(30px); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .details-group { transition: all 0.4s ease; position: relative; z-index: 0; }
+    .details-group[open] { z-index: 10; }
+    .details-group[open] summary span:last-child { transform: rotate(45deg); }
+    .details-group summary { cursor: pointer; }
     .scroll-btn {
       position: fixed;
       bottom: 20px;
@@ -157,89 +125,48 @@
       transition: background 0.2s ease;
       z-index: 2;
     }
-    @media (max-width: 767px) {
-      .menu-toggle { display: flex; }
-      nav.md\\:flex { display: none; }
-      #tariffs h2 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-      }
-    }
-    @media (min-width: 768px) and (max-width: 1023px) {
-      #tariffs h2 {
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-      }
-    }
-    .opacity-0 { opacity: 0; }
-    .opacity-100 { opacity: 1; }
+    details + details { margin-top: 1rem; }
+    .hover-scale:not([open]) { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-scale:not([open]):hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
   </style>
 </head>
 
 <body class="bg-background text-primary font-sans antialiased">
   <header class="bg-surface sticky top-0 z-50 shadow-luxury">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center py-4 md:py-6">
-        <div class="flex items-center space-x-4">
-          <a href="index.html">
-            <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
-          </a>
-          <div class="text-2xl md:text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
-        </div>
-        <div class="flex items-center">
-          <nav class="hidden md:flex md:items-center md:space-x-8">
-            <ul class="nav-links flex space-x-6 md:space-x-8 text-sm font-semibold uppercase tracking-wide">
-              <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
-              <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
-              <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
-              <li><a href="index.html#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
-            </ul>
-            <div class="nav-buttons hidden md:flex md:space-x-4">
-              <a href="index.html#payment" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
-              <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
-            </div>
-          </nav>
-          <div class="md:hidden relative z-50">
-            <div class="menu-toggle flex items-center space-x-2" onclick="toggleMenu()">
-              <span id="burgerIcon" class="text-xl menu-icon">☰</span>
-              <span class="text-sm font-semibold">Меню</span>
-            </div>
-            <div id="menuOverlay" class="fixed inset-0 hidden mobile-nav-overlay z-40" onclick="toggleMenu(true)"></div>
-            <nav id="mobileNav" class="header-nav-mobile fixed top-16 right-4 w-72 h-[calc(100vh-4rem)] bg-surface p-6 rounded-2xl shadow-luxury transform scale-y-0 opacity-0 hidden transition-all duration-300 z-50 overflow-y-auto">
-              <ul class="flex flex-col space-y-5 text-base font-semibold">
-                <li><a href="index.html" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Главная</a></li>
-                <li><a href="index.html#news" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Новости</a></li>
-                <li><a href="index.html#documents" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Документы</a></li>
-                <li><a href="index.html#contacts" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Контакты</a></li>
-              </ul>
-              <div class="mt-6 flex flex-col space-y-3">
-                <a href="index.html#payment" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Оплата</a>
-                <a href="https://lk.tsn-26.ru" target="_blank" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
-              </div>
-            </nav>
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-6 px-4">
+      <div class="flex items-center space-x-4">
+        <a href="index.html">
+          <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+        </a>
+        <div class="text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
       </div>
+      <nav class="flex items-center space-x-8">
+        <ul class="flex space-x-8 text-sm font-semibold uppercase tracking-wide">
+          <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+          <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+          <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+          <li><a href="index.html#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
+        </ul>
+        <div class="flex space-x-4">
+          <a href="index.html#payment" class="bg-accent text-surface px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+          <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-6 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+        </div>
+      </nav>
     </div>
   </header>
 
-  <section id="tariffs" class="bg-surface py-14 section-divider relative">
+  <section class="bg-surface py-24">
     <div class="max-w-7xl mx-auto px-4">
-      <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
-        <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
-      </div>
       <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">💰 Тарифы и услуги</h2>
-      <div class="h-[2px] w-24 mx-auto bg-gradient-to-r from-accent to-transparent rounded-full mb-12"></div>
 
-      <div class="relative z-0 grid grid-cols-1 gap-12 auto-rows-auto">
-        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
-          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            💸 Тарифы на содержание и обслуживание
-            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="accordion-content mt-4 text-body leading-relaxed">
+      <div class="grid gap-6">
+        <!-- Тарифы на содержание и обслуживание -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">Тарифы на содержание и обслуживание</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="table-content mt-4">
             <table class="w-full text-left">
               <thead>
                 <tr>
@@ -1032,28 +959,27 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </details>
 
-        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
-          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            📋 Порядок начисления оплаты
-            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="accordion-content mt-4 text-body leading-relaxed space-y-4">
-            <h3 class="text-xl font-semibold text-body">Порядок начисления оплаты</h3>
-            <p>
+        <!-- Порядок начисления оплаты -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">ПОРЯДОК НАЧИСЛЕНИЯ ОПЛАТЫ</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="table-content mt-4">
+            <h3 class="text-xl font-semibold text-body mb-2">Порядок начисления оплаты</h3>
+            <p class="text-body mb-4">
               В соответствии с п.2 ст.154 ЖК РФ плата за жилое помещение и коммунальные услуги для собственников помещений в МКД включает в себя:
             </p>
-            <ul class="list-disc list-inside pl-4">
+            <ul class="list-disc list-inside text-body mb-4 pl-4">
               <li>Плата за содержание помещения, включающую в себя плату за услуги, работы по управлению МКД, за содержание и текущий ремонт общего имущества, за холодную и горячую воду, электрическую и тепловую энергию, потребляемые при содержании общего имущества, и также за отведение сточных вод.</li>
               <li>Плата за коммунальные услуги.</li>
             </ul>
-            <p>
+            <p class="text-body mb-4">
               Оплата в ТСН для содержания и управления общим имуществом включает:
             </p>
-            <ol class="list-decimal list-inside pl-4">
+            <ol class="list-decimal list-inside text-body mb-4 pl-4">
               <li>Услуги содержания и текущего ремонта общего имущества, плата за которые определяется исходя из общей площади помещений Собственника, т.е. соразмерно доле Собственника в праве на общее имущество – 66 руб. 69 коп. за кв.м.</li>
               <li>Коммунальные услуги, предоставленные на общедомовые нужды: за холодную и горячую воду, электрическую и тепловую энергию, потребляемые при содержании общего имущества, и также за отведение сточных вод – плата за которые определяется ежемесячно по тарифам ресурсоснабжающих организаций, объём определится исходя из показаний общедомовых приборов учёта и распределяется между собственниками пропорционально размеру общей площади каждого помещения Собственника.</li>
               <li>Оплата за вывоз ТБО и КГМ (крупногабаритного мусора) определяется ежемесячно по тарифам поставщика, исходя из фактического вывоза мусора и распределяется между собственниками пропорционально доле Собственника в праве общей собственности на общее имущество.</li>
@@ -1061,18 +987,16 @@
               <li>Домофон (запирающее устройство) – плата взимается за помещение – 60 руб.</li>
             </ol>
           </div>
-        </div>
+        </details>
 
-        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
-          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            🛠️ Дополнительные услуги
-            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <div class="accordion-content mt-4 text-body leading-relaxed space-y-6">
-            <div>
-              <h3 class="text-xl font-semibold text-body mb-2">Ставки платы за социальный наем жилого помещения и наем специализированного жилого помещения (наем) с 01.01.2022</h3>
+        <!-- Дополнительные услуги -->
+        <details class="details-group bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
+          <summary class="flex justify-between items-center cursor-pointer">
+            <span class="text-xl font-semibold text-primary">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</span>
+            <span class="text-2xl transition-transform">➕</span>
+          </summary>
+          <div class="table-content mt-4">
+            <h3 class="text-xl font-semibold text-body mb-2">Ставки платы за социальный наем жилого помещения и наем специализированного жилого помещения (наем) с 01.01.2022</h3>
               <table class="w-full text-left mb-6">
                 <thead>
                   <tr>
@@ -1103,9 +1027,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Ставки платы за коммерческий наем жилого помещения с 01.01.2022</h3>
               <table class="w-full text-left mb-6">
                 <thead>
@@ -1125,9 +1047,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Ставки платы за наем жилого помещения в бездотационных домах с 01.01.2022</h3>
               <table class="w-full text-left mb-6">
                 <thead>
@@ -1147,9 +1067,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Единый тариф на услугу регионального оператора по обращению с твердыми коммунальными отходами по г. Москве с 01.01.2022</h3>
               <table class="w-full text-left mb-6">
                 <thead>
@@ -1167,9 +1085,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Капитальный ремонт с 01.01.2022</h3>
               <table class="w-full text-left mb-6">
                 <thead>
@@ -1187,11 +1103,9 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div class="border-t border-secondary my-6"></div>
+              <div class="border-t border-secondary my-6"></div> <!-- Разделитель -->
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Содержание жилых помещений с 01.01.2022</h3>
               <h4 class="text-lg font-semibold text-body mb-2">Многоквартирные дома</h4>
               <table class="w-full text-left mb-6">
@@ -1236,9 +1150,7 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div>
               <h4 class="text-lg font-semibold text-body mb-2">Малоэтажные дома жилищного фонда</h4>
               <table class="w-full text-left mb-6">
                 <thead>
@@ -1258,11 +1170,9 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div class="border-t border-secondary my-6"></div>
+              <div class="border-t border-secondary my-6"></div> <!-- Разделитель -->
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Розничные цены на природный газ для расчетов с населением г. Москвы (2022)</h3>
               <p class="text-body mb-4">(за исключением Троицкого и Новомосковского административных округов)</p>
               <table class="w-full text-left mb-6">
@@ -1295,12 +1205,11 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div class="border-t border-secondary my-6"></div>
+              <div class="border-t border-secondary my-6"></div> <!-- Разделитель -->
 
-            <div>
               <h3 class="text-xl font-semibold text-body mb-2">Тарифы в сфере электрической энергии для населения по городу Москве (за исключением Троицкого и Новомосковского административных округов г. Москвы)</h3>
+
               <table class="w-full text-left mb-6">
                 <thead>
                   <tr>
@@ -1418,14 +1327,14 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
 
-            <div class="border-t border-secondary my-6"></div>
+              <div class="border-t border-secondary my-6"></div> <!-- Разделитель -->
 
-            <div>
-              <h3 class="text-xl font-semibold text-body mb-2">СПРАВКА ПО ТАРИФНЫМ РЕШЕНИЯМ НА 2022 ГОД (ДЛЯ НАСЕЛЕНИЯ)</h3>
               <table class="w-full text-left mb-6">
                 <thead>
+                  <tr>
+                    <th colspan="4">СПРАВКА ПО ТАРИФНЫМ РЕШЕНИЯМ НА 2022 ГОД (ДЛЯ НАСЕЛЕНИЯ)</th>
+                  </tr>
                   <tr>
                     <th>Наименование организаций</th>
                     <th>с 01.01.2022 по 30.06.2022</th>
@@ -1520,18 +1429,13 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
+
+
           </div>
-        </div>
+        </details>
       </div>
     </div>
   </section>
-
-  <footer class="bg-primary py-8 md:py-12 text-body text-sm">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-      © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
-    </div>
-  </footer>
 
   <a href="#" class="scroll-btn" id="scrollToTop">
     <svg viewBox="0 0 24 24">
@@ -1540,114 +1444,47 @@
   </a>
 
   <script>
-    function toggleMenu(forceClose = false) {
-      const nav = document.getElementById('mobileNav');
-      const overlay = document.getElementById('menuOverlay');
-      const icon = document.getElementById('burgerIcon');
-
-      const isOpen = !nav.classList.contains('hidden');
-
-      if (forceClose || isOpen) {
-        nav.classList.add('scale-y-0', 'opacity-0');
-        setTimeout(() => nav.classList.add('hidden'), 300);
-        overlay.classList.add('hidden');
-        icon.classList.remove('open');
-      } else {
-        nav.classList.remove('hidden', 'scale-y-0', 'opacity-0');
-        overlay.classList.remove('hidden');
-        icon.classList.add('open');
-      }
-    }
-
-    document.addEventListener('click', function (event) {
-      const nav = document.getElementById('mobileNav');
-      const toggle = document.querySelector('.menu-toggle');
-      const overlay = document.getElementById('menuOverlay');
-
-      if (!nav.contains(event.target) && !toggle.contains(event.target) && overlay.contains(event.target)) {
-        toggleMenu(true);
-      }
-    });
-
-    document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault();
-        toggleMenu(true);
-        setTimeout(() => {
-          const href = link.getAttribute('href');
-          if (href && href !== '#') {
-            if (href === 'index.html' || href.startsWith('index.html#')) {
-              window.location.href = href;
-            } else {
-              document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
-            }
-          }
-        }, 300);
-      });
-    });
-
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      '#tariffs h2',
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '#tariffs',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
-
-    gsap.utils.toArray('.accordion-item').forEach((item, index) => {
-      gsap.fromTo(
-        item,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-          delay: index * 0.1,
-        }
-      );
-    });
-
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const item = header.parentElement;
-        const content = item.querySelector('.accordion-content');
-        const isOpen = item.classList.contains('open');
-
-        document.querySelectorAll('.accordion-item').forEach(i => {
-          i.classList.remove('open');
-          i.querySelector('.accordion-content').style.maxHeight = null;
-          i.querySelector('.accordion-content').style.opacity = 0;
-          i.querySelector('svg').classList.remove('rotate-45');
-        });
-
-        if (!isOpen) {
-          item.classList.add('open');
-          content.style.maxHeight = content.scrollHeight + 'px';
-          content.style.opacity = 1;
-          header.querySelector('svg').classList.add('rotate-45');
-        }
+    gsap.utils.toArray('.fade-in').forEach((element) => {
+      ScrollTrigger.create({
+        trigger: element,
+        start: 'top 80%',
+        onEnter: () => element.classList.add('visible'),
       });
     });
 
     document.getElementById('scrollToTop').addEventListener('click', (e) => {
       e.preventDefault();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('details').forEach((details) => {
+      details.addEventListener('toggle', () => {
+        if (details.open) {
+          gsap.from(details.querySelector('.table-content'), {
+            opacity: 0,
+            y: -20,
+            duration: 0.6,
+            ease: 'power2.out',
+          });
+          // Reset any hover transformations when opened
+          gsap.set(details, { scale: 1, y: 0, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)' });
+        }
+      });
+    });
+
+    gsap.utils.toArray('.hover-scale:not([open])').forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        if (!element.open) {
+          gsap.to(element, { y: -2, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)', duration: 0.3, ease: 'power1.out' });
+        }
+      });
+      element.addEventListener('mouseleave', () => {
+        if (!element.open) {
+          gsap.to(element, { y: 0, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)', duration: 0.3, ease: 'power1.out' });
+        }
+      });
     });
   </script>
 </body>
