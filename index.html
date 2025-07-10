@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -84,7 +85,6 @@
       }
     }
     .documents-section { position: relative; z-index: 1; }
-    /* Responsive header */
     @media (max-width: 767px) {
       .header-nav { display: none; }
     }
@@ -92,25 +92,21 @@
     @media (max-width: 767px) {
       .menu-toggle { display: flex; }
     }
-    /* Бургер-анимация и оверлей */
     .menu-icon {
       transition: transform 0.3s ease;
     }
     .menu-icon.open {
       transform: rotate(90deg);
     }
-    /* Плавное раскрытие */
     #mobileNav {
       transform-origin: top;
       transition: transform 0.3s ease, opacity 0.3s ease;
       max-height: 85vh;
     }
-    /* Задний фон затемнённый */
     .mobile-nav-overlay {
       background-color: rgba(0, 0, 0, 0.5);
       backdrop-filter: blur(2px);
     }
-    /* Адаптивность для секций */
     @media (max-width: 767px) {
       #lifestyle h2, #documents h2 { font-size: 2rem; margin-bottom: 1.5rem; }
     }
@@ -333,12 +329,13 @@
       </div>
       <div>
         <h3 class="text-xl md:text-2xl font-serif font-semibold mb-4 md:mb-6">Свяжитесь с нами</h3>
-        <div class="space-y-4">
-          <input type="text" placeholder="Ваше имя" class="w-full border border-accent/20 rounded-2xl p-3 md:p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-base md:text-lg" required>
-          <input type="email" placeholder="Email" class="w-full border border-accent/20 rounded-2xl p-3 md:p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-base md:text-lg" required>
-          <textarea placeholder="Сообщение" class="w-full border border-accent/20 rounded-2xl p-3 md:p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-base md:text-lg" rows="4" required></textarea>
-          <button type="submit" class="bg-accent text-surface px-6 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 w-full md:w-auto">Отправить</button>
-        </div>
+        <form id="contactForm" action="https://formspree.io/f/xdkzqeyn" method="POST" class="space-y-4">
+          <input type="text" name="name" placeholder="Ваше имя" class="w-full border border-accent/20 rounded-2xl p-3 md:p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-base md:text-lg" required>
+          <input type="email" name="email" placeholder="Email" class="w-full border border-accent/20 rounded-2xl p-3 md:p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-base md:text-lg" required>
+          <textarea name="message" placeholder="Сообщение" class="w-full border border-accent/20 rounded-2xl p-3 md:p-4 bg-surface focus:outline-none focus:ring-2 focus:ring-accent/50 transition text-body text-base md:text-lg" rows="4" required></textarea>
+          <button id="submitButton" type="submit" class="bg-accent text-surface px-6 py-2 md:px-8 md:py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 w-full md:w-auto">Отправить</button>
+          <p id="formMessage" class="text-body text-base md:text-lg hidden"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -394,6 +391,61 @@
           }
         }, 300);
       });
+    });
+
+    // Обработка отправки формы
+    document.getElementById('contactForm').addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const form = event.target;
+      const submitButton = document.getElementById('submitButton');
+      const formMessage = document.getElementById('formMessage');
+      const formData = new FormData(form);
+
+      // Проверка заполнения полей
+      if (!formData.get('name') || !formData.get('email') || !formData.get('message')) {
+        formMessage.textContent = 'Пожалуйста, заполните все поля.';
+        formMessage.classList.remove('hidden', 'text-accent');
+        formMessage.classList.add('text-red-500');
+        return;
+      }
+
+      // Проверка формата email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.get('email'))) {
+        formMessage.textContent = 'Пожалуйста, введите корректный email.';
+        formMessage.classList.remove('hidden', 'text-accent');
+        formMessage.classList.add('text-red-500');
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Отправка...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          formMessage.textContent = 'Сообщение успешно отправлено!';
+          formMessage.classList.remove('hidden', 'text-red-500');
+          formMessage.classList.add('text-accent');
+          form.reset();
+        } else {
+          throw new Error('Ошибка при отправке формы.');
+        }
+      } catch (error) {
+        formMessage.textContent = 'Произошла ошибка. Попробуйте снова.';
+        formMessage.classList.remove('hidden', 'text-accent');
+        formMessage.classList.add('text-red-500');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Отправить';
+      }
     });
 
     gsap.registerPlugin(ScrollTrigger);
@@ -497,3 +549,4 @@
   </script>
 </body>
 </html>
+```
