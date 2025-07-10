@@ -1668,12 +1668,14 @@
 
     document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
       link.addEventListener('click', (event) => {
-        event.preventDefault();
+        event.preventDefault(); // Предотвращаем нативное поведение для всех ссылок
+        const href = link.getAttribute('href');
         toggleMenu(true);
         setTimeout(() => {
-          const href = link.getAttribute('href');
           if (href && href !== '#') {
-            if (href === 'index.html' || href.startsWith('index.html#')) {
+            if (href.startsWith('http')) {
+              window.location.href = href; // Открываем внешнюю ссылку (например, https://lk.tsn-26.ru) в текущей вкладке
+            } else if (href === 'index.html' || href.startsWith('index.html#')) {
               window.location.href = href;
             } else {
               document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
