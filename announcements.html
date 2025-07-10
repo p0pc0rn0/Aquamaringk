@@ -11,6 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -91,6 +92,9 @@
     .menu-icon.open { transform: rotate(90deg); }
     .mobile-nav-overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
     .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; align-items: center; gap: 0.5rem; }
+    .tile-icon { display: inline-block; }
+    .tile-icon i { transition: transform 0.3s ease, color 0.3s ease; }
+    .tile-icon i:hover { transform: rotate(15deg); color: #E5E7EB; }
     @media (max-width: 767px) {
       .menu-toggle { display: flex; }
       nav.md\\:flex { display: none; }
@@ -162,7 +166,9 @@
       <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
         <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
       </div>
-      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">📢 Объявления для жителей</h2>
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">
+        <span class="tile-icon text-accent"><i data-lucide="megaphone" class="w-8 h-8 md:w-10 md:h-10"></i></span> Объявления для жителей
+      </h2>
       <div class="h-[2px] w-24 mx-auto bg-gradient-to-r from-accent to-transparent rounded-full mb-12"></div>
 
       <div class="grid grid-cols-1 gap-8 auto-rows-auto">
@@ -175,7 +181,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>🚗 В связи с ситуацией допуск автомобилей доставки и такси во двор ограничен.</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="car" class="w-8 h-8 md:w-10 md:h-10"></i></span> В связи с ситуацией допуск автомобилей доставки и такси во двор ограничен.</p>
             <p>При заказе такси указывайте посадку/высадку — набережная вдоль дома или заказывайте пропуск через диспетчерскую.</p>
             <p class="text-accent font-semibold">ПРАВЛЕНИЕ ТСН «АКВАМАРИН»</p>
           </div>
@@ -190,7 +196,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>🧽 С 8 апреля начинается мойка окон. Стоимость — 250 руб./м². Заказ через диспетчерскую.</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="spray-can" class="w-8 h-8 md:w-10 md:h-10"></i></span> С 8 апреля начинается мойка окон. Стоимость — 250 руб./м². Заказ через диспетчерскую.</p>
           </div>
         </div>
 
@@ -203,7 +209,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>🔧 С 4 апреля доступна сезонная смена колёс. Заказ через диспетчерскую.</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="wrench" class="w-8 h-8 md:w-10 md:h-10"></i></span> С 4 апреля доступна сезонная смена колёс. Заказ через диспетчерскую.</p>
           </div>
         </div>
 
@@ -216,7 +222,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>📄 Уведомление о проведении общего собрания собственников в форме заочного голосования через систему «Дом-26.РФ».</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="file-text" class="w-8 h-8 md:w-10 md:h-10"></i></span> Уведомление о проведении общего собрания собственников в форме заочного голосования через систему «Дом-26.РФ».</p>
           </div>
         </div>
 
@@ -229,7 +235,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>🚿 Отключение горячей воды: с 14:00 10 июля по 13:59 20 июля 2023 г.</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="shower-head" class="w-8 h-8 md:w-10 md:h-10"></i></span> Отключение горячей воды: с 14:00 10 июля по 13:59 20 июля 2023 г.</p>
           </div>
         </div>
 
@@ -242,7 +248,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>📈 С 1 июля изменились тарифы на ЖКУ. Актуальные тарифы доступны в разделе «Тарифы».</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="trending-up" class="w-8 h-8 md:w-10 md:h-10"></i></span> С 1 июля изменились тарифы на ЖКУ. Актуальные тарифы доступны в разделе «Тарифы».</p>
           </div>
         </div>
 
@@ -255,7 +261,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>🧴 Стоимость мойки автомобилей скорректирована в связи с ростом цен на автохимию.</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="droplet" class="w-8 h-8 md:w-10 md:h-10"></i></span> Стоимость мойки автомобилей скорректирована в связи с ростом цен на автохимию.</p>
           </div>
         </div>
 
@@ -268,7 +274,7 @@
             </svg>
           </button>
           <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
-            <p>🧽 С 25 апреля 2022 года — мойка наружных окон методом промышленного альпинизма.</p>
+            <p><span class="tile-icon text-accent"><i data-lucide="spray-can" class="w-8 h-8 md:w-10 md:h-10"></i></span> С 25 апреля 2022 года — мойка наружных окон методом промышленного альпинизма.</p>
             <p>Стоимость — 220 руб./м². Заказы через диспетчерскую.</p>
           </div>
         </div>
@@ -283,6 +289,9 @@
   </footer>
 
   <script>
+    // Инициализация иконок Lucide
+    lucide.createIcons();
+
     function toggleMenu(forceClose = false) {
       const nav = document.getElementById('mobileNav');
       const overlay = document.getElementById('menuOverlay');
@@ -314,13 +323,13 @@
 
     document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
       link.addEventListener('click', (event) => {
-        event.preventDefault(); // Предотвращаем нативное поведение для всех ссылок
+        event.preventDefault();
         const href = link.getAttribute('href');
         toggleMenu(true);
         setTimeout(() => {
           if (href && href !== '#') {
             if (href.startsWith('http')) {
-              window.location.href = href; // Открываем внешнюю ссылку (например, https://lk.tsn-26.ru) в текущей вкладке
+              window.location.href = href;
             } else if (href === 'index.html' || href.startsWith('index.html#')) {
               window.location.href = href;
             } else {
@@ -364,6 +373,25 @@
             toggleActions: 'play none none none',
           },
           delay: index * 0.1,
+        }
+      );
+    });
+
+    gsap.utils.toArray('.tile-icon').forEach((icon) => {
+      gsap.fromTo(
+        icon,
+        { scale: 1 },
+        {
+          scale: 1.2,
+          duration: 0.5,
+          repeat: 1,
+          yoyo: true,
+          ease: 'power1.inOut',
+          scrollTrigger: {
+            trigger: icon.parentElement,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
         }
       );
     });

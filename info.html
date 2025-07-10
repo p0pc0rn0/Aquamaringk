@@ -11,6 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -87,6 +88,9 @@
     .accordion-item.open svg {
       transform: rotate(45deg);
     }
+    .accordion-icon { display: inline-block; margin-right: 0.5rem; }
+    .accordion-icon i { transition: transform 0.3s ease, color 0.3s ease; }
+    .accordion-icon i:hover { transform: rotate(15deg); color: #E5E7EB; }
     .menu-icon { transition: transform 0.3s ease; }
     .menu-icon.open { transform: rotate(90deg); }
     .mobile-nav-overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
@@ -162,14 +166,16 @@
       <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
         <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
       </div>
-      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">ℹ️ Информация для жителей</h2>
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">
+        <span class="accordion-icon text-accent"><i data-lucide="info" class="w-8 h-8 md:w-10 md:h-10"></i></span> Информация для жителей
+      </h2>
       <div class="h-[2px] w-24 mx-auto bg-gradient-to-r from-accent to-transparent rounded-full mb-12"></div>
 
       <div class="grid grid-cols-1 gap-8 auto-rows-auto">
         <!-- Карточка 1 -->
         <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
           <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            📜 Правила проживания
+            <span><span class="accordion-icon text-accent"><i data-lucide="scroll-text" class="w-8 h-8 md:w-10 md:h-10"></i></span> Правила проживания</span>
             <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -189,7 +195,7 @@
         <!-- Карточка 2 -->
         <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
           <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            👷‍♂️ Памятка для рабочих бригад
+            <span><span class="accordion-icon text-accent"><i data-lucide="hard-hat" class="w-8 h-8 md:w-10 md:h-10"></i></span> Памятка для рабочих бригад</span>
             <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -205,7 +211,7 @@
         <!-- Карточка 3 -->
         <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
           <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            🏚️ Недостатки при приёмке дома
+            <span><span class="accordion-icon text-accent"><i data-lucide="home" class="w-8 h-8 md:w-10 md:h-10"></i></span> Недостатки при приёмке дома</span>
             <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -223,7 +229,7 @@
         <!-- Карточка 4 -->
         <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1200">
           <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            🗂️ Протоколы собраний
+            <span><span class="accordion-icon text-accent"><i data-lucide="folder" class="w-8 h-8 md:w-10 md:h-10"></i></span> Протоколы собраний</span>
             <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -243,7 +249,7 @@
         <!-- Карточка 5 -->
         <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1400">
           <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
-            📑 Дополнительная информация к голосованию
+            <span><span class="accordion-icon text-accent"><i data-lucide="file-text" class="w-8 h-8 md:w-10 md:h-10"></i></span> Дополнительная информация к голосованию</span>
             <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -269,6 +275,9 @@
   </footer>
 
   <script>
+    // Инициализация иконок Lucide
+    lucide.createIcons();
+
     function toggleMenu(forceClose = false) {
       const nav = document.getElementById('mobileNav');
       const overlay = document.getElementById('menuOverlay');
@@ -302,7 +311,7 @@
       link.addEventListener('click', (event) => {
         const href = link.getAttribute('href');
         if (href.startsWith('http')) {
-          event.preventDefault(); // Предотвращаем нативное поведение ссылки
+          event.preventDefault();
           toggleMenu(true);
           setTimeout(() => {
             window.location.href = href;
@@ -352,6 +361,25 @@
             toggleActions: 'play none none none',
           },
           delay: index * 0.1,
+        }
+      );
+    });
+
+    gsap.utils.toArray('.accordion-icon').forEach((icon) => {
+      gsap.fromTo(
+        icon,
+        { scale: 1 },
+        {
+          scale: 1.2,
+          duration: 0.5,
+          repeat: 1,
+          yoyo: true,
+          ease: 'power1.inOut',
+          scrollTrigger: {
+            trigger: icon.parentElement,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
         }
       );
     });
