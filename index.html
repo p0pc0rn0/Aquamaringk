@@ -125,8 +125,10 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center py-4 md:py-6">
         <div class="flex items-center space-x-4">
-          <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
-          <div class="text-2xl md:text-3xl font-serif font-bold text-primary">ЖК Аквамарин</div>
+          <a href="index.html">
+            <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+          </a>
+          <a href="index.html" class="text-2xl md:text-3xl font-serif font-bold text-primary hover:text-accent transition-colors">ЖК Аквамарин</a>
         </div>
         <div class="flex items-center">
           <nav class="header-nav hidden md:flex md:items-center md:space-x-8">
@@ -138,7 +140,7 @@
             </ul>
             <div class="nav-buttons hidden md:flex md:space-x-4">
               <a href="#payment" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
-              <a href="https://lk.tsn-26.ru" target="_blank" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+              <a href="https://lk.tsn-26.ru" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
             </div>
           </nav>
           <div class="md:hidden relative z-50">
@@ -156,7 +158,7 @@
               </ul>
               <div class="mt-6 flex flex-col space-y-3">
                 <a href="#payment" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Оплата</a>
-                <a href="https://lk.tsn-26.ru" target="_blank" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
+                <a href="https://lk.tsn-26.ru" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
               </div>
             </nav>
           </div>
@@ -379,21 +381,18 @@
 
     document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
       link.addEventListener('click', (event) => {
-        event.preventDefault(); // Предотвращаем нативное поведение для всех ссылок
+        event.preventDefault();
         const href = link.getAttribute('href');
-        if (href.startsWith('http')) {
-          toggleMenu(true);
-          setTimeout(() => {
-            window.location.href = href; // Открываем внешнюю ссылку (например, https://lk.tsn-26.ru) в текущей вкладке
-          }, 300);
-        } else {
-          toggleMenu(true);
-          setTimeout(() => {
-            if (href && href !== '#') {
+        toggleMenu(true);
+        setTimeout(() => {
+          if (href && href !== '#') {
+            if (href.startsWith('http')) {
+              window.location.href = href;
+            } else {
               document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
             }
-          }, 300);
-        }
+          }
+        }, 300);
       });
     });
 
