@@ -11,6 +11,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -100,6 +101,17 @@
     }
     .progress-bar { background: #E5E7EB; border-radius: 9999px; height: 0.625rem; width: 100%; }
     .progress-bar-fill { height: 100%; border-radius: 9999px; transition: width 0.3s ease; }
+    .tile-icon {
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+    .tile-icon i {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .tile-icon i:hover {
+      transform: rotate(15deg);
+      color: #E5E7EB;
+    }
     @media (max-width: 767px) {
       .menu-toggle { display: flex; }
       nav.md\\:flex { display: none; }
@@ -167,7 +179,7 @@
       <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
         <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
       </div>
-      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">🗳️ Голосование</h2>
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400"><span class="tile-icon text-accent"><i data-lucide="vote" class="w-8 h-8"></i></span> Голосование</h2>
       <div class="h-[2px] w-24 mx-auto bg-gradient-to-r from-accent to-transparent rounded-full mb-12"></div>
 
       <div class="relative z-0 grid grid-cols-1 gap-12 auto-rows-auto">
@@ -184,8 +196,8 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Общее собрание собственников</h3>
-              <p class="text-body">📍 115184, г. Москва, Озерковская наб., дом 26</p>
-              <p class="text-body">🕒 Период: 25 октября 2023, 10:00 — 20 ноября 2023, 10:00</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="map-pin" class="w-5 h-5"></i></span> 115184, г. Москва, Озерковская наб., дом 26</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="clock" class="w-5 h-5"></i></span> Период: 25 октября 2023, 10:00 — 20 ноября 2023, 10:00</p>
             </div>
           </div>
         </div>
@@ -221,10 +233,10 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Избрать председателем Яковлева А.Я.</h3>
-              <p class="text-body">✅ За: 56 голосов (100%)</p>
-              <p class="text-body">❌ Против: 0 голосов</p>
-              <p class="text-body">🟨 Воздержался: 0 голосов</p>
-              <p class="text-body">📊 Всего: 56 голосов | Опрос закрыт</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="check-circle" class="w-5 h-5"></i></span> За: 56 голосов (100%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="x-circle" class="w-5 h-5"></i></span> Против: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="minus-circle" class="w-5 h-5"></i></span> Воздержался: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="bar-chart" class="w-5 h-5"></i></span> Всего: 56 голосов | Опрос закрыт</p>
             </div>
           </div>
         </div>
@@ -260,10 +272,10 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Выбрать секретарем Байкова О.Р.</h3>
-              <p class="text-body">✅ За: 56 голосов (100%)</p>
-              <p class="text-body">❌ Против: 0 голосов</p>
-              <p class="text-body">🟨 Воздержался: 0 голосов</p>
-              <p class="text-body">📊 Всего: 56 голосов | Опрос закрыт</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="check-circle" class="w-5 h-5"></i></span> За: 56 голосов (100%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="x-circle" class="w-5 h-5"></i></span> Против: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="minus-circle" class="w-5 h-5"></i></span> Воздержался: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="bar-chart" class="w-5 h-5"></i></span> Всего: 56 голосов | Опрос закрыт</p>
             </div>
           </div>
         </div>
@@ -299,11 +311,11 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Тариф на содержание и ремонт</h3>
-              <p class="text-body">💸 115 руб./кв.м. с 1 декабря 2023</p>
-              <p class="text-body">✅ За: 53 голоса (95%)</p>
-              <p class="text-body">❌ Против: 3 голоса (5%)</p>
-              <p class="text-body">🟨 Воздержался: 0 голосов</p>
-              <p class="text-body">📊 Всего: 56 голосов | Опрос закрыт</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="piggy-bank" class="w-5 h-5"></i></span> 115 руб./кв.м. с 1 декабря 2023</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="check-circle" class="w-5 h-5"></i></span> За: 53 голоса (95%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="x-circle" class="w-5 h-5"></i></span> Против: 3 голоса (5%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="minus-circle" class="w-5 h-5"></i></span> Воздержался: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="bar-chart" class="w-5 h-5"></i></span> Всего: 56 голосов | Опрос закрыт</p>
             </div>
           </div>
         </div>
@@ -339,11 +351,11 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Тариф на охрану</h3>
-              <p class="text-body">💸 13,74 руб./кв.м. с 1 декабря 2023</p>
-              <p class="text-body">✅ За: 55 голосов (98%)</p>
-              <p class="text-body">❌ Против: 1 голос (2%)</p>
-              <p class="text-body">🟨 Воздержался: 0 голосов</p>
-              <p class="text-body">📊 Всего: 56 голосов | Опрос закрыт</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="piggy-bank" class="w-5 h-5"></i></span> 13,74 руб./кв.м. с 1 декабря 2023</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="check-circle" class="w-5 h-5"></i></span> За: 55 голосов (98%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="x-circle" class="w-5 h-5"></i></span> Против: 1 голос (2%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="minus-circle" class="w-5 h-5"></i></span> Воздержался: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="bar-chart" class="w-5 h-5"></i></span> Всего: 56 голосов | Опрос закрыт</p>
             </div>
           </div>
         </div>
@@ -379,11 +391,11 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Тариф на содержание паркинга</h3>
-              <p class="text-body">💸 732,45 руб./машиноместо с 1 декабря 2023</p>
-              <p class="text-body">✅ За: 55 голосов (98%)</p>
-              <p class="text-body">❌ Против: 1 голос (2%)</p>
-              <p class="text-body">🟨 Воздержался: 0 голосов</p>
-              <p class="text-body">📊 Всего: 56 голосов | Опрос закрыт</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="piggy-bank" class="w-5 h-5"></i></span> 732,45 руб./машиноместо с 1 декабря 2023</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="check-circle" class="w-5 h-5"></i></span> За: 55 голосов (98%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="x-circle" class="w-5 h-5"></i></span> Против: 1 голос (2%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="minus-circle" class="w-5 h-5"></i></span> Воздержался: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="bar-chart" class="w-5 h-5"></i></span> Всего: 56 голосов | Опрос закрыт</p>
             </div>
           </div>
         </div>
@@ -419,11 +431,11 @@
           <div class="card-view block md:hidden space-y-4">
             <div class="bg-white p-4 rounded-xl shadow-luxury">
               <h3 class="font-semibold text-lg mb-2">Тариф на охрану паркинга</h3>
-              <p class="text-body">💸 545,62 руб./машиноместо с 1 декабря 2023</p>
-              <p class="text-body">✅ За: 54 голоса (95%)</p>
-              <p class="text-body">❌ Против: 3 голоса (5%)</p>
-              <p class="text-body">🟨 Воздержался: 0 голосов</p>
-              <p class="text-body">📊 Всего: 57 голосов | Опрос закрыт</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="piggy-bank" class="w-5 h-5"></i></span> 545,62 руб./машиноместо с 1 декабря 2023</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="check-circle" class="w-5 h-5"></i></span> За: 54 голоса (95%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="x-circle" class="w-5 h-5"></i></span> Против: 3 голоса (5%)</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="minus-circle" class="w-5 h-5"></i></span> Воздержался: 0 голосов</p>
+              <p class="text-body"><span class="tile-icon text-accent"><i data-lucide="bar-chart" class="w-5 h-5"></i></span> Всего: 57 голосов | Опрос закрыт</p>
             </div>
           </div>
         </div>
@@ -444,6 +456,8 @@
   </a>
 
   <script>
+    lucide.createIcons();
+
     function toggleMenu(forceClose = false) {
       const nav = document.getElementById('mobileNav');
       const overlay = document.getElementById('menuOverlay');
@@ -544,6 +558,25 @@
             toggleActions: 'play none none none',
           },
           delay: index * 0.1,
+        }
+      );
+    });
+
+    gsap.utils.toArray('.tile-icon').forEach((icon) => {
+      gsap.fromTo(
+        icon,
+        { scale: 1 },
+        {
+          scale: 1.2,
+          duration: 0.5,
+          repeat: 1,
+          yoyo: true,
+          ease: 'power1.inOut',
+          scrollTrigger: {
+            trigger: icon.parentElement,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
         }
       );
     });
