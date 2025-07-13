@@ -309,22 +309,24 @@
 
     document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
       link.addEventListener('click', (event) => {
+        event.preventDefault();
         const href = link.getAttribute('href');
-        if (href.startsWith('http')) {
-          event.preventDefault();
-          toggleMenu(true);
-          setTimeout(() => {
+        toggleMenu(true);
+        setTimeout(() => {
+          if (href.startsWith('http')) {
             window.location.href = href;
-          }, 300);
-        } else {
-          event.preventDefault();
-          toggleMenu(true);
-          setTimeout(() => {
-            if (href && href !== '#') {
+          } else if (href === 'index.html' || href.startsWith('index.html#')) {
+            window.location.href = href;
+          } else if (href && href !== '#') {
+            try {
               document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            } catch (e) {
+              console.error('Invalid selector for scroll:', href);
             }
-          }, 300);
-        }
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 300);
       });
     });
 
