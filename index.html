@@ -40,29 +40,73 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
-    html { scroll-behavior: smooth; }
-    .parallax-bg { background-attachment: fixed; background-size: cover; background-position: center; height: 100vh; }
-    @media (max-width: 768px) {
-      .parallax-bg { background-attachment: scroll; height: 60vh; }
+    html {
+      scroll-behavior: smooth;
+      touch-action: pan-y; /* Разрешаем только вертикальную прокрутку */
     }
-    .fade-in { opacity: 0; transform: translateY(30px); }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
-    .hover-scale:hover { transform: scale(1.1) translateY(-10px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); }
-    .doc-tile { transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease; }
-    .doc-tile:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); background-color: rgba(192, 163, 114, 0.1); }
-    .section-divider { border-top: 1px solid rgba(192, 163, 114, 0.2); }
-    .tile-icon { display: inline-block; }
-    .tile-icon i { transition: transform 0.3s ease, color 0.3s ease; }
-    .tile-icon i:hover { transform: rotate(15deg); color: #E5E7EB; }
+    body {
+      overflow-x: hidden; /* Запрещаем горизонтальную прокрутку */
+    }
+    .parallax-bg {
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      width: 100%; /* Ограничиваем ширину */
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .parallax-bg {
+        background-attachment: scroll;
+        height: 60vh;
+      }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    .doc-tile {
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+    }
+    .doc-tile:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      background-color: rgba(192, 163, 114, 0.1);
+    }
+    .section-divider {
+      border-top: 1px solid rgba(192, 163, 114, 0.2);
+    }
+    .tile-icon {
+      display: inline-block;
+    }
+    .tile-icon i {
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .tile-icon i:hover {
+      transform: rotate(15
+
+deg);
+      color: #E5E7EB;
+    }
     .bg-watermark {
       position: absolute;
       top: 0;
       left: 0;
-      width: 200%;
-      height: 200%;
+      width: 100%; /* Ограничиваем ширину до экрана */
+      height: 100%;
       pointer-events: none;
-      overflow: hidden;
+      overflow: hidden; /* Скрываем содержимое, выходящее за пределы */
       z-index: 0;
     }
     .watermark-line {
@@ -86,13 +130,31 @@
         opacity: 0.04;
       }
     }
-    .documents-section { position: relative; z-index: 1; }
-    @media (max-width: 767px) {
-      .header-nav { display: none; }
+    .documents-section {
+      position: relative;
+      z-index: 1;
     }
-    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; align-items: center; gap: 0.5rem; }
     @media (max-width: 767px) {
-      .menu-toggle { display: flex; }
+      .header-nav {
+        display: none;
+      }
+    }
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    @media (max-width: 767px) {
+      .menu-toggle {
+        display: flex;
+      }
+      #mobileNav {
+        width: 100%; /* Меню занимает всю ширину экрана */
+        max-width: 300px; /* Ограничиваем максимальную ширину */
+        right: 0; /* Прижимаем к правому краю */
+      }
     }
     .menu-icon {
       transition: transform 0.3s ease;
@@ -110,10 +172,24 @@
       backdrop-filter: blur(2px);
     }
     @media (max-width: 767px) {
-      #lifestyle h2, #documents h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+      #lifestyle h2, #documents h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
     }
     @media (min-width: 768px) and (max-width: 1023px) {
-      #lifestyle h2, #documents h2 { font-size: 2.5rem; margin-bottom: 2rem; }
+      #lifestyle h2, #documents h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+    img {
+      max-width: 100%; /* Убедимся, что изображения не выходят за пределы */
+      height: auto;
+    }
+    .max-w-7xl {
+      max-width: 100%; /* Ограничиваем ширину контейнеров */
+      box-sizing: border-box;
     }
   </style>
 </head>
