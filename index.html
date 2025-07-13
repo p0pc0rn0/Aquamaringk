@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ЖК Аквамарин — эксклюзивная резиденция с информацией, объявлениями, тарифами, голосованиями и услугами для жителей." />
+  <meta property="og:title" content="ЖК Аквамарин" />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:description" content="Ознакомьтесь с жизнью в ЖК Аквамарин: новости, документы, тарифы, услуги и контакты." />
   <title>ЖК Аквамарин</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -124,7 +128,7 @@
       <div class="flex justify-between items-center py-4 md:py-6">
         <div class="flex items-center space-x-4">
           <a href="index.html">
-            <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-12 h-12">
+            <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-16 h-auto">
           </a>
           <a href="index.html" class="text-2xl md:text-3xl font-serif font-bold text-primary hover:text-accent transition-colors">ЖК Аквамарин</a>
         </div>
@@ -137,7 +141,7 @@
               <li><a href="#contacts" class="text-primary hover:text-accent transition-colors duration-300">Контакты</a></li>
             </ul>
             <div class="nav-buttons hidden md:flex md:space-x-4">
-              <a href="#payment" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Оплата</a>
+              <a href="#contacts" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Контакты</a>
               <a href="https://lk.tsn-26.ru" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
             </div>
           </nav>
@@ -155,7 +159,7 @@
                 <li><a href="#contacts" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Контакты</a></li>
               </ul>
               <div class="mt-6 flex flex-col space-y-3">
-                <a href="#payment" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Оплата</a>
+                <a href="#contacts" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Контакты</a>
                 <a href="https://lk.tsn-26.ru" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
               </div>
             </nav>
@@ -171,7 +175,7 @@
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 animate-fade-in-up">ЖК Аквамарин</h1>
       <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl animate-fade-in-up animation-delay-200">Эксклюзивная резиденция для тех, кто ценит утонченность и комфорт</p>
       <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-        <a href="#payment" class="bg-accent text-surface px-6 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 animate-fade-in-up animation-delay-400 w-full sm:w-auto text-center">Оплатить онлайн</a>
+        <a href="#contacts" class="bg-accent text-surface px-6 py-3 rounded-full font-semibold hover:bg-opacity-80 transition duration-300 animate-fade-in-up animation-delay-400 w-full sm:w-auto text-center">Связаться с нами</a>
         <a href="#news" class="border border-secondary px-6 py-3 rounded-full text-secondary font-semibold hover:bg-secondary hover:text-primary transition duration-300 animate-fade-in-up animation-delay-600 w-full sm:w-auto text-center">Новости</a>
       </div>
     </div>
@@ -220,11 +224,11 @@
       <div class="watermark-line" style="top:4.75vh; left:90vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
       <div class="watermark-line" style="top:4.875vh; left:95vw;">AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE AQUAMARINE</div>
     </div>
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="max-w-[85rem] mx-auto px-4 relative z-10">
       <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif text-center mb-12 md:mb-16">Ваш новый уровень жизни</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Информация -->
-        <a href="info.html" class="group block bg-surface p-6 md:p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="info.html" class="group block bg-surface p-8 md:p-12 rounded-2xl shadow-luxury hover-scale fade-in tile">
           <div class="flex flex-col items-center text-center">
             <div class="tile-icon text-accent mb-4 md:mb-6">
               <i data-lucide="info" class="w-8 h-8 md:w-10 md:h-10"></i>
@@ -234,7 +238,7 @@
           </div>
         </a>
         <!-- Объявления -->
-        <a href="announcements.html" class="group block bg-surface p-6 md:p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="announcements.html" class="group block bg-surface p-8 md:p-12 rounded-2xl shadow-luxury hover-scale fade-in tile">
           <div class="flex flex-col items-center text-center">
             <div class="tile-icon text-accent mb-4 md:mb-6">
               <i data-lucide="megaphone" class="w-8 h-8 md:w-10 md:h-10"></i>
@@ -244,7 +248,7 @@
           </div>
         </a>
         <!-- Тарифы -->
-        <a href="tariffs.html" class="group block bg-surface p-6 md:p-10 rounded-2xl shadow-luxury hover-scale fade-in tile">
+        <a href="tariffs.html" class="group block bg-surface p-8 md:p-12 rounded-2xl shadow-luxury hover-scale fade-in tile">
           <div class="flex flex-col items-center text-center">
             <div class="tile-icon text-accent mb-4 md:mb-6">
               <i data-lucide="wallet" class="w-8 h-8 md:w-10 md:h-10"></i>
@@ -325,25 +329,6 @@
           <span class="tile-icon text-accent"><i data-lucide="file-text" class="w-8 h-8 md:w-10 md:h-10"></i></span> Правила проживания
         </a></li>
       </ul>
-    </div>
-  </section>
-
-  <section id="payment" class="py-16 md:py-24 bg-background section-divider">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif mb-6 md:mb-8">Оплата онлайн</h2>
-      <p class="text-body text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-2xl mx-auto">Оплачивайте услуги резиденции быстро и удобно через QR-код или банковские реквизиты.</p>
-      <div class="mb-6 md:mb-8">
-        <img src="qr-code.png" alt="QR код для оплаты" class="mx-auto w-48 md:w-56 h-48 md:h-56 rounded-2xl shadow-luxury">
-      </div>
-      <div class="bg-surface inline-block p-6 md:p-8 rounded-2xl shadow-luxury text-body text-base md:text-lg leading-relaxed">
-        <p><strong>Получатель:</strong> ТСН Аквамарин</p>
-        <p><strong>ИНН:</strong> 0000000000</p>
-        <p><strong>КПП:</strong> 000000000</p>
-        <p><strong>Р/С:</strong> 40700000000000000000</p>
-        <p><strong>Банк:</strong> АО "Банк"</p>
-        <p><strong>БИК:</strong> 000000000</p>
-        <p><strong>Кор. счет:</strong> 30100000000000000000</p>
-      </div>
     </div>
   </section>
 
