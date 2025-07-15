@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Политика обработки персональных данных ЖК Аквамарин в соответствии с Федеральным законом №152-ФЗ." />
+  <meta property="og:title" content="Политика обработки персональных данных | ЖК Аквамарин" />
+  <meta property="og:image" content="logo.png" />
+  <meta property="og:description" content="Узнайте, как ЖК Аквамарин обрабатывает и защищает персональные данные пользователей." />
+  <title>Политика обработки персональных данных | ЖК Аквамарин</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1A2526',
+            accent: '#C0A372',
+            secondary: '#E5E7EB',
+            body: '#4B5563',
+            background: '#F7F7F5',
+            surface: '#FFFFFF',
+          },
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+          },
+          boxShadow: {
+            'luxury': '0 15px 30px rgba(0, 0, 0, 0.1)',
+            'luxury-hover': '0 20px 40px rgba(0, 0, 0, 0.2)',
+          },
+          spacing: {
+            '128': '32rem',
+          },
+          lineHeight: {
+            'relaxed': '1.75',
+          },
+          screens: {
+            'xs': '320px',
+            'sm': '640px',
+            'md': '768px',
+            'lg': '1024px',
+            'xl': '1280px',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.5s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'translateY(10px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    .fade-in { opacity: 0; transform: translateY(30px); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .hover-scale { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .hover-scale:hover { transform: scale(1.05) translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+    .accordion-item { transition: all 0.4s ease; min-height: 80px; }
+    .accordion-item.open {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      border-radius: 1rem;
+    }
+    .accordion-header { cursor: pointer; width: 100%; text-align: left; }
+    .accordion-header:hover { color: #C0A372; }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 2000px;
+      opacity: 1;
+    }
+    .accordion-item svg {
+      transition: transform 0.3s ease;
+    }
+    .accordion-item.open svg {
+      transform: rotate(45deg);
+    }
+    .accordion-icon { display: inline-block; margin-right: 0.5rem; }
+    .accordion-icon i { transition: transform 0.3s ease, color 0.3s ease; }
+    .accordion-icon i:hover { transform: rotate(15deg); color: #E5E7EB; }
+    .menu-icon { transition: transform 0.3s ease; }
+    .menu-icon.open { transform: rotate(90deg); }
+    .mobile-nav-overlay { background-color: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px); }
+    .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; align-items: center; gap: 0.5rem; }
+    @media (max-width: 767px) {
+      .menu-toggle { display: flex; }
+      nav.md\\:flex { display: none; }
+      #info h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      #info h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+      }
+    }
+    .opacity-0 { opacity: 0; }
+    .opacity-100 { opacity: 1; }
+  </style>
+</head>
+
+<body class="bg-background text-primary font-sans antialiased">
+  <header class="bg-surface sticky top-0 z-50 shadow-luxury">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4 md:py-6">
+        <div class="flex items-center space-x-4">
+          <a href="index.html">
+            <img src="logo.png" alt="Логотип ЖК Аквамарин" class="w-16 h-auto">
+          </a>
+          <a href="index.html" class="text-2xl md:text-3xl font-serif font-bold text-primary hover:text-accent transition-colors">ЖК Аквамарин</a>
+        </div>
+        <div class="flex items-center">
+          <nav class="hidden md:flex md:items-center md:space-x-8">
+            <ul class="nav-links flex space-x-6 md:space-x-8 text-sm font-semibold uppercase tracking-wide">
+              <li><a href="index.html" class="text-primary hover:text-accent transition-colors duration-300">Главная</a></li>
+              <li><a href="index.html#lifestyle" class="text-primary hover:text-accent transition-colors duration-300">Дом</a></li>
+              <li><a href="index.html#news" class="text-primary hover:text-accent transition-colors duration-300">Новости</a></li>
+              <li><a href="index.html#documents" class="text-primary hover:text-accent transition-colors duration-300">Документы</a></li>
+            </ul>
+            <div class="nav-buttons hidden md:flex md:space-x-4">
+              <a href="index.html#contacts" class="bg-accent text-surface px-4 py-2 md:px-6 md:py-2 rounded-full font-semibold hover:bg-opacity-80 transition duration-300">Контакты</a>
+              <a href="https://lk.tsn-26.ru" class="border border-accent px-4 py-2 md:px-6 md:py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition duration-300">Личный кабинет</a>
+            </div>
+          </nav>
+          <div class="md:hidden relative z-50">
+            <div class="menu-toggle flex items-center space-x-2" onclick="toggleMenu()">
+              <span id="burgerIcon" class="text-xl menu-icon">☰</span>
+              <span class="text-sm font-semibold">Меню</span>
+            </div>
+            <div id="menuOverlay" class="fixed inset-0 hidden mobile-nav-overlay z-40" onclick="toggleMenu(true)"></div>
+            <nav id="mobileNav" class="header-nav-mobile fixed top-16 right-4 w-72 h-[calc(100vh-4rem)] bg-surface p-6 rounded-2xl shadow-luxury transform scale-y-0 opacity-0 hidden transition-all duration-300 z-50 overflow-y-auto">
+              <ul class="flex flex-col space-y-5 text-base font-semibold">
+                <li><a href="index.html" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Главная</a></li>
+                <li><a href="index.html#lifestyle" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Дом</a></li>
+                <li><a href="index.html#news" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Новости</a></li>
+                <li><a href="index.html#documents" class="nav-link text-primary hover:text-accent transition-colors block" onclick="toggleMenu(true)">Документы</a></li>
+              </ul>
+              <div class="mt-6 flex flex-col space-y-3">
+                <a href="index.html#contacts" class="nav-link bg-accent text-surface px-4 py-2 rounded-full font-semibold hover:bg-opacity-80 transition text-center block" onclick="toggleMenu(true)">Контакты</a>
+                <a href="https://lk.tsn-26.ru" class="nav-link border border-accent px-4 py-2 rounded-full text-accent font-semibold hover:bg-accent hover:text-surface transition text-center block" onclick="toggleMenu(true)">Личный кабинет</a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="info" class="bg-surface py-14 section-divider relative">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="absolute inset-0 flex justify-center items-center pointer-events-none opacity-5 select-none">
+        <h1 class="text-[10rem] md:text-[16rem] font-serif font-bold text-primary uppercase tracking-widest">AQUAMARINE</h1>
+      </div>
+      <h2 class="text-4xl md:text-5xl font-serif text-center mb-16 text-primary fade-in animation-delay-400">
+        <span class="accordion-icon text-accent"><i data-lucide="file-text" class="w-8 h-8 md:w-10 md:h-10"></i></span> Политика обработки персональных данных
+      </h2>
+      <div class="h-[2px] w-24 mx-auto bg-gradient-to-r from-accent to-transparent rounded-full mb-12"></div>
+
+      <div class="grid grid-cols-1 gap-8 auto-rows-auto">
+        <!-- Раздел 1 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-600">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="info" class="w-8 h-8 md:w-10 md:h-10"></i></span> 1. Общие положения</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-4">
+            <p>Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных оператора.</p>
+            <p>Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
+            <p>Настоящая политика Оператора в отношении обработки персональных данных (далее – Политика) применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта <a href="https://дом-26.рф" class="text-accent hover:underline">https://дом-26.рф</a>.</p>
+          </div>
+        </div>
+
+        <!-- Раздел 2 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-800">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="book-open" class="w-8 h-8 md:w-10 md:h-10"></i></span> 2. Основные понятия, используемые в Политике</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <p><strong>Автоматизированная обработка персональных данных</strong> – обработка персональных данных с помощью средств вычислительной техники;</p>
+            <p><strong>Блокирование персональных данных</strong> – временное прекращение обработки персональных данных (за исключением случаев, если обработка необходима для уточнения персональных данных);</p>
+            <p><strong>Веб-сайт</strong> – совокупность графических и информационных материалов, а также программ для ЭВМ и баз данных, обеспечивающих их доступность в сети интернет по сетевому адресу <a href="http://дом-26.рф" class="text-accent hover:underline">http://дом-26.рф</a>;</p>
+            <p><strong>Информационная система персональных данных</strong> — совокупность содержащихся в базах данных персональных данных, и обеспечивающих их обработку информационных технологий и технических средств;</p>
+            <p><strong>Обезличивание персональных данных</strong> — действия, в результате которых невозможно определить без использования дополнительной информации принадлежность персональных данных конкретному Пользователю или иному субъекту персональных данных;</p>
+            <p><strong>Обработка персональных данных</strong> – любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных;</p>
+            <p><strong>Оператор</strong> – государственный орган, муниципальный орган, юридическое или физическое лицо, самостоятельно или совместно с другими лицами организующие и (или) осуществляющие обработку персональных данных, а также определяющие цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными;</p>
+            <p><strong>Персональные данные</strong> – любая информация, относящаяся прямо или косвенно к определенному или определяемому Пользователю веб-сайта <a href="https://дом-26.рф" class="text-accent hover:underline">https://дом-26.рф</a>;</p>
+            <p><strong>Пользователь</strong> – любой посетитель веб-сайта <a href="https://дом-26.рф" class="text-accent hover:underline">https://дом-26.рф</a>;</p>
+            <p><strong>Предоставление персональных данных</strong> – действия, направленные на раскрытие персональных данных определенному лицу или определенному кругу лиц;</p>
+            <p><strong>Распространение персональных данных</strong> – любые действия, направленные на раскрытие персональных данных неопределенному кругу лиц (передача персональных данных) или на ознакомление с персональными данными неограниченного круга лиц, в том числе обнародование персональных данных в средствах массовой информации, размещение в информационно-телекоммуникационных сетях или предоставление доступа к персональным данным каким-либо иным способом;</p>
+            <p><strong>Трансграничная передача персональных данных</strong> – передача персональных данных на территорию иностранного государства органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу;</p>
+            <p><strong>Уничтожение персональных данных</strong> – любые действия, в результате которых персональные данные уничтожаются безвозвратно с невозможностью дальнейшего восстановления содержания персональных данных в информационной системе персональных данных и (или) результате которых уничтожаются материальные носители персональных данных.</p>
+          </div>
+        </div>
+
+        <!-- Раздел 3 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1000">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="user" class="w-8 h-8 md:w-10 md:h-10"></i></span> 3. Оператор может обрабатывать следующие персональные данные Пользователя</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <ul class="list-disc pl-5 space-y-1">
+              <li>Фамилия, имя, отчество;</li>
+              <li>Номера телефонов;</li>
+            </ul>
+            <p>Также на сайте происходит сбор и обработка обезличенных данных о посетителях (в т.ч. файлов «cookie») с помощью сервисов интернет-статистики (Яндекс Метрика и Гугл Аналитика и других).</p>
+            <p>Вышеперечисленные данные далее по тексту Политики объединены общим понятием Персональные данные.</p>
+          </div>
+        </div>
+
+        <!-- Раздел 4 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1200">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="target" class="w-8 h-8 md:w-10 md:h-10"></i></span> 4. Цели обработки персональных данных</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <p>Цель обработки персональных данных Пользователя — информирование Пользователя посредством отправки электронных писем; предоставление доступа Пользователю к сервисам, информации и/или материалам, содержащимся на веб-сайте.</p>
+            <p>Также Оператор имеет право направлять Пользователю уведомления о новых продуктах и услугах, специальных предложениях и различных событиях. Пользователь всегда может отказаться от получения информационных сообщений, уведомив об этом Оператора.</p>
+            <p>Обезличенные данные Пользователей, собираемые с помощью сервисов интернет-статистики, служат для сбора информации о действиях Пользователей на сайте, улучшения качества сайта и его содержания.</p>
+          </div>
+        </div>
+
+        <!-- Раздел 5 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1400">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="scale" class="w-8 h-8 md:w-10 md:h-10"></i></span> 5. Правовые основания обработки персональных данных</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <p>Оператор обрабатывает персональные данные Пользователя только в случае их заполнения и/или отправки Пользователем самостоятельно через специальные формы, расположенные на сайте <a href="https://дом-26.рф" class="text-accent hover:underline">https://дом-26.рф</a>.</p>
+            <p>Заполняя соответствующие формы и/или отправляя свои персональные данные Оператору, Пользователь выражает свое согласие с данной Политикой.</p>
+            <p>Оператор обрабатывает обезличенные данные о Пользователе в случае, если это разрешено в настройках браузера Пользователя (включено сохранение файлов «cookie» и использование технологии JavaScript).</p>
+          </div>
+        </div>
+
+        <!-- Раздел 6 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1600">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="database" class="w-8 h-8 md:w-10 md:h-10"></i></span> 6. Порядок сбора, хранения, передачи и других видов обработки персональных данных</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <p>Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных.</p>
+            <p>Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к персональным данным неуполномоченных лиц.</p>
+            <p>Персональные данные Пользователя никогда, ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства.</p>
+            <p>В случае выявления неточностей в персональных данных, Пользователь может актуализировать их самостоятельно, путем направления Оператору уведомление на адрес электронной почты Оператора с пометкой «Актуализация персональных данных».</p>
+            <p>Срок обработки персональных данных является неограниченным. Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты на электронный адрес Оператора с пометкой «Отзыв согласия на обработку персональных данных».</p>
+          </div>
+        </div>
+
+        <!-- Раздел 7 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-1800">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="globe" class="w-8 h-8 md:w-10 md:h-10"></i></span> 7. Трансграничная передача персональных данных</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <p>Оператор до начала осуществления трансграничной передачи персональных данных обязан убедиться в том, что иностранным государством, на территорию которого предполагается осуществлять передачу персональных данных, обеспечивается надежная защита прав субъектов персональных данных.</p>
+            <p>Трансграничная передача персональных данных на территории иностранных государств, не отвечающих вышеуказанным требованиям, может осуществляться только в случае наличия согласия в письменной форме субъекта персональных данных на трансграничную передачу его персональных данных и/или исполнения договора, стороной которого является субъект персональных данных.</p>
+          </div>
+        </div>
+
+        <!-- Раздел 8 -->
+        <div class="accordion-item bg-white rounded-xl shadow-luxury p-6 hover-scale fade-in animation-delay-2000">
+          <button class="accordion-header flex justify-between items-center w-full text-left text-xl font-semibold text-primary">
+            <span><span class="accordion-icon text-accent"><i data-lucide="check-circle" class="w-8 h-8 md:w-10 md:h-10"></i></span> 8. Заключительные положения</span>
+            <svg class="w-6 h-6 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 4v16M4 12h16" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content mt-4 text-body leading-relaxed space-y-2">
+            <p>Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору.</p>
+            <p>В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
+            <p>Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу <a href="https://дом-26.рф" class="text-accent hover:underline">https://дом-26.рф</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-primary py-8 md:py-12 text-body text-sm">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      © 2025 ЖК Аквамарин. Все права защищены. | <a href="privacy-policy.html" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
+    </div>
+  </footer>
+
+  <script>
+    // Инициализация иконок Lucide
+    lucide.createIcons();
+
+    function toggleMenu(forceClose = false) {
+      const nav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('menuOverlay');
+      const icon = document.getElementById('burgerIcon');
+
+      const isOpen = !nav.classList.contains('hidden');
+
+      if (forceClose || isOpen) {
+        nav.classList.add('scale-y-0', 'opacity-0');
+        setTimeout(() => nav.classList.add('hidden'), 300);
+        overlay.classList.add('hidden');
+        icon.classList.remove('open');
+      } else {
+        nav.classList.remove('hidden', 'scale-y-0', 'opacity-0');
+        overlay.classList.remove('hidden');
+        icon.classList.add('open');
+      }
+    }
+
+    document.addEventListener('click', function (event) {
+      const nav = document.getElementById('mobileNav');
+      const toggle = document.querySelector('.menu-toggle');
+      const overlay = document.getElementById('menuOverlay');
+
+      if (!nav.contains(event.target) && !toggle.contains(event.target) && overlay.contains(event.target)) {
+        toggleMenu(true);
+      }
+    });
+
+    document.querySelectorAll('#mobileNav .nav-link').forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const href = link.getAttribute('href');
+        toggleMenu(true);
+        setTimeout(() => {
+          if (href.startsWith('http')) {
+            window.location.href = href;
+          } else if (href === 'index.html' || href.startsWith('index.html#')) {
+            window.location.href = href;
+          } else if (href && href !== '#') {
+            try {
+              document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+            } catch (e) {
+              console.error('Invalid selector for scroll:', href);
+            }
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }, 300);
+      });
+    });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo(
+      '#info h2',
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '#info',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+
+    gsap.utils.toArray('.accordion-item').forEach((item, index) => {
+      gsap.fromTo(
+        item,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+          delay: index * 0.1,
+        }
+      );
+    });
+
+    gsap.utils.toArray('.accordion-icon').forEach((icon) => {
+      gsap.fromTo(
+        icon,
+        { scale: 1 },
+        {
+          scale: 1.2,
+          duration: 0.5,
+          repeat: 1,
+          yoyo: true,
+          ease: 'power1.inOut',
+          scrollTrigger: {
+            trigger: icon.parentElement,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    });
+
+    gsap.utils.toArray('.hover-scale').forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        gsap.to(element, { scale: 1.05, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.15)', duration: 0.3, ease: 'power1.out' });
+      });
+      element.addEventListener('mouseleave', () => {
+        gsap.to(element, { scale: 1, boxShadow: '0 15px 30px rgba(0, 0, 0, 0.1)', duration: 0.3, ease: 'power1.out' });
+      });
+    });
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const item = header.parentElement;
+        const content = item.querySelector('.accordion-content');
+        const isOpen = item.classList.contains('open');
+
+        document.querySelectorAll('.accordion-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.accordion-content').style.maxHeight = null;
+          i.querySelector('.accordion-content').style.opacity = 0;
+          i.querySelector('svg').classList.remove('rotate-45');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          content.style.opacity = 1;
+          header.querySelector('svg').classList.add('rotate-45');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
