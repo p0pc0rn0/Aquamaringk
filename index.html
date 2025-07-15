@@ -358,7 +358,7 @@
 
   <footer class="bg-primary py-8 md:py-12 text-body text-sm">
     <div class="max-w-7xl mx-auto px-4 text-center">
-      © 2025 ЖК Аквамарин. Все права защищены. | <a href="#" class="hover:text-accent transition-colors">Политика конфиденциальности</a>
+      © 2025 ЖК Аквамарин. Все права защищены. | <a href="privacy-policy.html" class="hover:text-accent transition-colors external-link">Политика конфиденциальности</a>
     </div>
   </footer>
 
@@ -402,9 +402,9 @@
         toggleMenu(true);
         setTimeout(() => {
           if (href === '#') {
-            window.scrollTo({ top: 0, behavior: 'smooth' }); // Прокрутка к началу страницы для "Главная"
+            window.scrollTo({ top: 0, behavior: 'smooth' });
           } else if (href && href !== '#') {
-            if (href.startsWith('http')) {
+            if (href.startsWith('http') || href.endsWith('.html')) {
               window.location.href = href;
             } else {
               const target = document.querySelector(href);
@@ -414,6 +414,16 @@
             }
           }
         }, 300);
+      });
+    });
+
+    // Ensure external links (like privacy-policy.html) are not overridden
+    document.querySelectorAll('.external-link').forEach(link => {
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (href && href.endsWith('.html')) {
+          window.location.href = href;
+        }
       });
     });
 
